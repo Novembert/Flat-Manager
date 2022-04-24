@@ -1,19 +1,19 @@
 <template>
   <v-app>
-    <v-main>
-      <HelloWorld/>
+    <AppBar />
+    <v-main class="pa-4 mt-12">
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppBar from '@/components/base/AppBar/AppBar.vue'
 
 export default {
   name: 'App',
-
   components: {
-    HelloWorld,
+    AppBar
   },
 
   data: () => ({
