@@ -1,15 +1,25 @@
 import { createRouter, createWebHistory  } from "vue-router";
 import WelcomeScreen from '@/views/WelcomeScreen/WelcomeScreen.vue'
+import Bills from '@/views/Bills/Bills.vue'
 
 const routes = [
+  {
+    path: "/bills",
+    name: "bills",
+    component: Bills,
+    meta: {
+      title: "Rachunki",
+    },
+  },
   {
     path: "/",
     name: "welcome",
     component: WelcomeScreen,
     meta: {
-      title: "Welcome",
+      title: "Start",
     },
   },
+  
   // {
   //   path: "/blogs",
   //   name: "blogs",

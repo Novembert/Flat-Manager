@@ -6,15 +6,22 @@ export default {
     },
     to: {
       type: String,
-      default: '/'
+      default: 'welcome'
     },
     icon: {
-      type: String,
+      type: [Array, String],
       default: null
     },
     background: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    destination () {
+      return {
+        name: this.to
+      }
     }
   },
   data () {

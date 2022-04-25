@@ -5,6 +5,8 @@
     <template #prepend>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
     </template>
-    <v-app-bar-title>Mieszkanie</v-app-bar-title>
+    <v-app-bar-title>Mieszkanie / {{ pageTitle }}</v-app-bar-title>
   </v-app-bar>
 </template>
+
+<script src='./AppBar.js' />
