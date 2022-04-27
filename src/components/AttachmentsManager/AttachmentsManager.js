@@ -1,3 +1,5 @@
+import { clone } from "lodash"
+
 export default {
   props: {
     filesList: {
@@ -20,10 +22,16 @@ export default {
   },
   methods: {
     save () {
-      this.files = this.files.push(...this.filesToSave)
+      const filesCopy = clone(this.files)
+      filesCopy.push(...this.filesToSave)
+      this.files = filesCopy
       this.filesToSave = []
       this.addAttachmentMode = false
-      console.log(this.files)
+    },
+    deleteFile (index) {
+      const filesCopy = clone(this.files)
+      filesCopy.splice(index, 1)
+      this.files = filesCopy
     }
   }
 }

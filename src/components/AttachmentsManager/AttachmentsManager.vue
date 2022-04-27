@@ -1,12 +1,17 @@
 <template>
   <v-dialog :model-value="open" @click:outside="open = false">
     <template #activator>
-      <v-btn
-        class="ma-2"
-        icon="mdi-paperclip"
-        size="small"
-        @click="open = true"
-      ></v-btn>
+      <div>
+        <v-btn
+          class="text-none mr-2"
+          size="small"
+          icon="mdi-paperclip"
+          @click="open = true"
+        >
+        </v-btn>
+        <v-badge class="badge" v-if="files?.length" :content="files.length" color="error">
+        </v-badge>
+      </div>
     </template>
      <v-card class="pt-2 pb-6 px-4 card">
        <v-card-title class="px-0 mb-2 d-flex justify-space-between">
@@ -36,8 +41,30 @@
           </v-btn>
           <v-divider />
         </div>
-        <v-list>
-          
+        <v-list :key="JSON.stringify(files)">
+          <v-list-item
+            class="px-0"
+            v-for="(file, index) in files"
+            :key="file.name"
+          >
+            <v-list-item-header>
+              <v-list-item-title>{{ file.name }}</v-list-item-title>
+            </v-list-item-header>
+            
+            <v-btn
+              class="mx-2"
+              icon="mdi-download"
+              size="x-small"
+            >
+            </v-btn>
+            <v-btn
+              icon="mdi-delete"
+              size="x-small"
+              color="error"
+              @click="deleteFile(index)"
+            >
+            </v-btn>
+          </v-list-item>
         </v-list>
      </v-card>
   </v-dialog>

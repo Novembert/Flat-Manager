@@ -25,9 +25,7 @@
             />
           </v-list-item-subtitle>
         </v-list-item-header>
-        <v-list-item-avatar end>
-          <AttachmentsManager />
-        </v-list-item-avatar>
+        <AttachmentsManager v-model:files-list="item.files" />
       </v-list-item>
    </v-list>
 </template>
