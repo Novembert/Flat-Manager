@@ -1,0 +1,17 @@
+.v-btn::v-deep {
+  background: #EEEEEE;
+}
+
+.card {
+  min-width: 90vw;
+}
+
+.add-attachment-form {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  .v-input {
+    flex: 1 0 100%;
+  }
+}

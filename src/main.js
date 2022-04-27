@@ -7,6 +7,14 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import * as dayjs from 'dayjs'
+import 'dayjs/locale/pl' // import locale
+
+const customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
+
+
+dayjs.locale('pl') // use locale
 
 library.add(fas);
 library.add(far);
