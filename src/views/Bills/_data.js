@@ -10,14 +10,14 @@ export const _mockBills = [
     name: 'Prąd',
     value: '200 DKK',
     checked: false,
-    deadline: '27/04/2022',
+    deadline: '28/04/2022',
     files: []
   },
   {
     name: 'Gaz',
     value: '300 DKK',
     checked: false,
-    deadline: '29/04/2022',
+    deadline: '30/04/2022',
     files: []
   }
 ]
