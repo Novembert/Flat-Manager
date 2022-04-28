@@ -9,13 +9,12 @@
     <span>Widok kalendarza</span>
     <v-switch 
       color="info" 
-      size="small" 
       hide-details
       density="compact"
       v-model="showCallendar"
     />
   </h3>
-  <TasksCalendar v-if="showCallendar" />
+  <TasksCalendar v-if="showCallendar" :tasks="bills" />
   <v-divider class="my-4"/>
   <h3>Lista</h3>
   <CheckableList :items="bills" checkbox-color="blue-grey  darken-1" />

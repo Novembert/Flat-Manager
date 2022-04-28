@@ -1,7 +1,7 @@
 <template>
    <v-list lines="two">
       <v-list-item 
-        :class="['px-0', calculateDateDiff(item.deadline) > 0 && item.checked && 'good']"
+        :class="['px-0', calculateDateDiff(item.deadline) < 0 && item.checked && 'good']"
         v-for="item of computedItems"
         :key="item.id"
       >
