@@ -9,7 +9,7 @@
           @click="open = true"
         >
         </v-btn>
-        <v-badge class="badge" v-if="files?.length" :content="files.length" color="error">
+        <v-badge color="info" class="badge" v-if="files?.length" :content="files.length">
         </v-badge>
       </div>
     </template>
@@ -44,7 +44,7 @@
         <v-list :key="JSON.stringify(files)">
           <v-list-item
             class="px-0"
-            v-for="(file, index) in files"
+            v-for="(file, index) of files"
             :key="file.name"
           >
             <v-list-item-header>

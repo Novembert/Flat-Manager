@@ -1,0 +1,11 @@
+.calendar-container {
+  display: flex;
+  justify-content: center;
+
+  .vc-container::v-deep {
+    .is-left, .is-right {
+      display: none !important;
+    }  
+  }
+  
+}

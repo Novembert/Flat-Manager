@@ -1,4 +1,11 @@
 export const links = [
+  {
+    title: "Start", 
+    icon: ['fas', 'home'], 
+    background: 'bg-grey',
+    to: '/',
+    welcome: true
+  },
   { 
     title: "Rachunki", 
     icon: ['fas', 'hand-holding-dollar'], 

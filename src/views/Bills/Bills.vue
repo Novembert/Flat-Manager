@@ -1,10 +1,23 @@
 <template>
+  <h3 class="mb-4">Zakres</h3>
   <MonthAndYearPicker
-    class="mb-2"
     v-model:month="month"
     v-model:year="year"
   />
-  <v-divider />
+  <v-divider class="my-4" />
+  <h3 class="mb-4 calendar-switch">
+    <span>Widok kalendarza</span>
+    <v-switch 
+      color="info" 
+      size="small" 
+      hide-details
+      density="compact"
+      v-model="showCallendar"
+    />
+  </h3>
+  <TasksCalendar v-if="showCallendar" />
+  <v-divider class="my-4"/>
+  <h3>Lista</h3>
   <CheckableList :items="bills" checkbox-color="blue-grey  darken-1" />
 </template>
 
