@@ -13,7 +13,7 @@
         </v-badge>
       </div>
     </template>
-     <v-card class="pt-2 pb-6 px-4 card">
+     <v-card class="pt-2 pb-6 px-4 dialog-card">
        <v-card-title class="px-0 mb-2 d-flex justify-space-between">
           <span class="text-h5">Załączniki</span>
           <v-btn

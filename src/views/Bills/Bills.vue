@@ -1,4 +1,9 @@
 <template>
+  <div class="d-flex justify-end mb-2">
+    <DefaultFactory
+      factory-title="Dodaj rachunek"
+    />
+  </div>
   <h3 class="mb-4">Zakres</h3>
   <MonthAndYearPicker
     v-model:month="month"
