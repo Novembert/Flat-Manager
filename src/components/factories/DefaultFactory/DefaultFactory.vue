@@ -12,13 +12,19 @@
         </v-btn>
       </div>
     </template>
-     <v-card class="pt-2 pb-6 px-4 dialog-card">
+     <v-card class="py-2 px-4 dialog-card">
        <v-card-title class="px-0 mb-2 d-flex justify-space-between">
           <span class="text-h5">{{ factoryTitle }}</span>
         </v-card-title>
           <v-form v-model="valid">
             <FactoryFormInputs :inputs="filteredInputs" v-model="formData" />
           </v-form>
+          <v-card-actions class="justify-end">
+            <v-btn @click="open = false">
+              Anuluj
+            </v-btn>
+            <v-btn class="ml-4" color="success">Zapisz</v-btn>
+          </v-card-actions>
      </v-card>
   </v-dialog>
 </template>

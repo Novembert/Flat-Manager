@@ -1,4 +1,9 @@
+import { DatePicker } from 'v-calendar';
+
 export default {
+  components: {
+    DatePicker
+  },
   props: {
     inputs: {
       type: Array,

@@ -1,14 +1,6 @@
 import { Calendar } from 'v-calendar';
+import { today, errorColor, defaultColor, warningColor } from './_data'
 import * as dayjs from 'dayjs'
-
-const errorColor = '#B00020'
-const warningColor = '#FB8C00'
-
-const today =  {
-  key: 'today',
-  highlight: 'gray',
-  dates: new Date()
-}
 
 export default {
   components: {
@@ -36,7 +28,7 @@ export default {
           dates: new Date(givenDate.get('year'), givenDate.get('month'), givenDate.get('date')),
           dot: {
             style: {
-              backgroundColor: task.checked ? 'green' : diff <= 0 ? diff < 0 ? errorColor : warningColor : 'blue'
+              backgroundColor: task.checked ? 'green' : diff <= 0 ? diff < 0 ? errorColor : warningColor : defaultColor
             }
           },
           popover: {
