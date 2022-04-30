@@ -48,3 +48,22 @@ export const links = [
     background: 'bg-indigo bg-darken-1'
   }
 ]
+
+export const currencies = [
+  {
+    title: 'DKK',
+    value: 1
+  },
+  {
+    title: 'EUR',
+    value: 2
+  },
+  {
+    title: 'PLN',
+    value: 3,
+  },
+  {
+    title: 'USD',
+    value: 4
+  },
+]

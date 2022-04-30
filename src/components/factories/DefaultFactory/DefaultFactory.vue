@@ -16,6 +16,9 @@
        <v-card-title class="px-0 mb-2 d-flex justify-space-between">
           <span class="text-h5">{{ factoryTitle }}</span>
         </v-card-title>
+          <v-form v-model="valid">
+            <FactoryFormInputs :inputs="filteredInputs" v-model="formData" />
+          </v-form>
      </v-card>
   </v-dialog>
 </template>

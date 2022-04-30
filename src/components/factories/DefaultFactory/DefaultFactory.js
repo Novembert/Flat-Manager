@@ -1,4 +1,10 @@
+import { defaultInputs } from './_data'
+import FactoryFormInputs from './FactoryFormInputs/FactoryFormInputs.vue'
+
 export default {
+  components: {
+    FactoryFormInputs
+  },
   props: {
     factoryTitle: {
       type: String,
@@ -6,12 +12,19 @@ export default {
     },
     hide: {
       type: Array,
-      default: null
+      default: () => []
     }
   },
   data () {
     return {
       open: false,
+      formData: {},
+      valid: null,
     }
-  }
+  },
+  computed: {
+    filteredInputs () {
+      return defaultInputs.filter(el => !(el.name in this.hide))
+    }
+  },
 }
