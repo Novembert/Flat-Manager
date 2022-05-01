@@ -37,6 +37,11 @@ export default createVuetify(
       VTextField: {
         variant: 'outlined',
         placeholder: 'Wpisz'
+      },
+      VAutocomplete: {
+        variant: 'outlined',
+        placeholder: 'Wybierz',
+        dense: true
       }
     } 
   }

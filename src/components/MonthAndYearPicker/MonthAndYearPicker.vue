@@ -4,7 +4,6 @@
         <v-autocomplete
           v-model="pickedMonth"
           :items="months"
-          dense
           item-text="title"
           items-value="value"
           hide-details
@@ -15,7 +14,6 @@
         <v-autocomplete
           v-model="pickedYear"
           :items="years"
-          dense
           hide-details
           label="Rok"
         />

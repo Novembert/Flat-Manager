@@ -27,6 +27,6 @@ export const defaultInputs = [
     label: 'Deadline',
     name: 'deadline',
     rules: [rules.required],
-    type: 'datepicker',
+    type: 'date',
   }
 ]
