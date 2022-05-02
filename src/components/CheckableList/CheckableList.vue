@@ -9,7 +9,7 @@
           <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" />
         </v-list-item-avatar>
         <v-list-item-header>
-          <v-list-item-title>{{ item.value ? `${item.value} | ${item.name}` : item.name }}</v-list-item-title>
+          <v-list-item-title>{{ item.value ? `${item.value} ${item.currency} | ${item.name}` : item.name }}</v-list-item-title>
           <v-list-item-subtitle
             :class="[
               calculateDateDiff(item.deadline) <= 0 && 'font-weight-bold',

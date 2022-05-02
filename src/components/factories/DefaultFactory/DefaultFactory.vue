@@ -1,12 +1,12 @@
 <template>
-  <v-dialog :model-value="open" @click:outside="open = false">
+  <v-dialog :model-value="isOpen" @click:outside="isOpen = false">
     <template #activator>
       <div>
         <v-btn
           size="small" 
           color="success" 
           prepend-icon="mdi-plus"
-          @click="open = true"
+          @click="isOpen = true"
         >
           Dodaj
         </v-btn>
@@ -16,15 +16,15 @@
        <v-card-title class="px-0 mb-2 d-flex justify-space-between">
           <span class="text-h5">{{ factoryTitle }}</span>
         </v-card-title>
-          <v-form v-model="valid">
-            <FactoryFormInputs :inputs="filteredInputs" v-model="formData" />
-          </v-form>
+        <v-form v-model="valid" @submit="submitForm">
+          <FactoryFormInputs :inputs="filteredInputs" v-model="formData" />
           <v-card-actions class="justify-end">
-            <v-btn @click="open = false">
+            <v-btn @click="isOpen = false">
               Anuluj
             </v-btn>
-            <v-btn class="ml-4" color="success">Zapisz</v-btn>
+            <v-btn class="ml-4" color="success" type="submit">Zapisz</v-btn>
           </v-card-actions>
+        </v-form>
      </v-card>
   </v-dialog>
 </template>

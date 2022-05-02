@@ -32,7 +32,7 @@ export default {
             }
           },
           popover: {
-            label: task.value ? `${task.value} | ${task.name}` : task.name,
+            label: task.value ? `${task.value} ${task.currency} | ${task.name}` : task.name,
             hideIndicator: true,
           },
         }
