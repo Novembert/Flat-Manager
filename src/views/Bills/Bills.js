@@ -27,7 +27,6 @@ export default {
       data.deadline = new Date(data.deadline)
       data.checked = false
       await addBill(data)
-      this.getBills()
       this.showBillsFactory = false
     },
     getBills () {
