@@ -10,7 +10,7 @@ export const defaultInputs = [
   },
   {
     label: 'Cena',
-    name: 'price',
+    name: 'value',
     rules: [rules.required, rules.digits],
     type: 'number',
   },
@@ -19,8 +19,6 @@ export const defaultInputs = [
     name: 'currency',
     // rules: [rules.required],
     type: 'autocomplete',
-    itemText: "title",
-    itemsValue: "value",
     items: currencies,
   },
   {

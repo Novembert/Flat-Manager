@@ -37,6 +37,10 @@ export default {
   methods: {
     submitForm () {
       this.$emit('on-submit', this.formData)
+    },
+    cancel () {
+      this.formData = {}
+      this.isOpen = false
     }
   }
 }

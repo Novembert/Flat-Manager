@@ -2,10 +2,8 @@ import MonthAndYearPicker from "@/components/MonthAndYearPicker/MonthAndYearPick
 import CheckableList from "@/components/CheckableList/CheckableList.vue"
 import TasksCalendar from "@/components/TasksCalendar/TasksCalendar.vue"
 import DefaultFactory from "@/components/factories/DefaultFactory/DefaultFactory.vue"
-import { _mockBills } from "./_data"
 import { addBill, getBillsList } from "@/services/bills"
 import * as dayjs from 'dayjs'
-
 
 export default {
   components: {
@@ -18,18 +16,29 @@ export default {
     return {
       month: null,
       year: null,
-      bills: _mockBills,
+      bills: null,
+      billsUnsubscribe: null,
       showCallendar: false,
-      showBillsFactory: false
+      showBillsFactory: false,
     }
   },
   methods: {
-    submitAddBill (data) {
-      data.deadline = dayjs(data.deadline).format()
-      addBill(data)
+    async submitAddBill (data) {
+      data.deadline = new Date(data.deadline)
+      data.checked = false
+      await addBill(data)
+      this.getBills()
+      this.showBillsFactory = false
     },
-    getBills () {
-      getBillsList({ month: this.month, year: this.year })
+    async getBills () {
+      const billsList = await getBillsList({ month: this.month + 1, year: this.year })
+      this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
     }
+  },
+  mounted () {
+    this.getBills()
+  },
+  beforeDestroy () {
+    this.billsUnsubscribe()
   }
 }

@@ -50,20 +50,5 @@ export const links = [
 ]
 
 export const currencies = [
-  {
-    title: 'DKK',
-    value: 1
-  },
-  {
-    title: 'EUR',
-    value: 2
-  },
-  {
-    title: 'PLN',
-    value: 3,
-  },
-  {
-    title: 'USD',
-    value: 4
-  },
+  'DKK', 'EUR', 'PLN', 'USD'
 ]

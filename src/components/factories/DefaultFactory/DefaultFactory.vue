@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :model-value="isOpen" @click:outside="isOpen = false">
+  <v-dialog :model-value="isOpen" @click:outside="cancel">
     <template #activator>
       <div>
         <v-btn
@@ -19,7 +19,7 @@
         <v-form v-model="valid" @submit="submitForm">
           <FactoryFormInputs :inputs="filteredInputs" v-model="formData" />
           <v-card-actions class="justify-end">
-            <v-btn @click="isOpen = false">
+            <v-btn @click="cancel">
               Anuluj
             </v-btn>
             <v-btn class="ml-4" color="success" type="submit">Zapisz</v-btn>
