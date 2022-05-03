@@ -30,8 +30,10 @@ export default {
       this.getBills()
       this.showBillsFactory = false
     },
-    async getBills () {
-      const billsList = await getBillsList({ month: this.month + 1, year: this.year })
+    getBills () {
+      this.billsUnsubscribe = getBillsList({ month: this.month + 1, year: this.year }, this.parseBills)
+    },
+    parseBills (billsList) {
       this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
     }
   },
