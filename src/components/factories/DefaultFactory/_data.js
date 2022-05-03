@@ -17,7 +17,7 @@ export const defaultInputs = [
   {
     label: 'Waluta',
     name: 'currency',
-    rules: [rules.required],
+    // rules: [rules.required],
     type: 'autocomplete',
     itemText: "title",
     itemsValue: "value",

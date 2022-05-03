@@ -6,6 +6,10 @@ export default {
     FactoryFormInputs
   },
   props: {
+    open: {
+      type: Boolean,
+      default: false
+    },
     factoryTitle: {
       type: String,
       default: null
@@ -17,7 +21,6 @@ export default {
   },
   data () {
     return {
-      open: false,
       formData: {},
       valid: null,
     }
@@ -25,6 +28,15 @@ export default {
   computed: {
     filteredInputs () {
       return defaultInputs.filter(el => !(el.name in this.hide))
+    },
+    isOpen: {
+      get () { return this.open },
+      set (value) { this.$emit('update:open', value) }
     }
   },
+  methods: {
+    submitForm () {
+      this.$emit('on-submit', this.formData)
+    }
+  }
 }

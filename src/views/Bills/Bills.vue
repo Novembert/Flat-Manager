@@ -1,6 +1,8 @@
 <template>
   <div class="d-flex justify-end mb-2">
     <DefaultFactory
+      @on-submit="submitAddBill"
+      v-model:open="showBillsFactory"
       factory-title="Dodaj rachunek"
     />
   </div>
