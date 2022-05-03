@@ -8,8 +8,8 @@
   </div>
   <h3 class="mb-4">Zakres</h3>
   <MonthAndYearPicker
-    v-model:month="month"
-    v-model:year="year"
+    v-model:month="range.month"
+    v-model:year="range.year"
   />
   <v-divider class="my-4" />
   <h3 class="mb-4 calendar-switch">

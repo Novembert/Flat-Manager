@@ -14,12 +14,22 @@ export default {
   },
   data () {
     return {
-      month: null,
-      year: null,
+      range: {
+        year: null,
+        month: null
+      },
       bills: null,
       billsUnsubscribe: null,
       showCallendar: false,
       showBillsFactory: false,
+    }
+  },
+  watch: {
+    range: {
+      deep: true,
+      handler () {
+        this.getBills()
+      }
     }
   },
   methods: {
@@ -29,8 +39,8 @@ export default {
       await addBill(data)
       this.showBillsFactory = false
     },
-    getBills () {
-      this.billsUnsubscribe = getBillsList({ month: this.month + 1, year: this.year }, this.parseBills)
+    async getBills () {
+      this.billsUnsubscribe = await getBillsList({ month: this.range.month + 1, year: this.range.year }, this.parseBills)
     },
     parseBills (billsList) {
       this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
