@@ -3,6 +3,8 @@ import CheckableList from "@/components/CheckableList/CheckableList.vue"
 import TasksCalendar from "@/components/TasksCalendar/TasksCalendar.vue"
 import DefaultFactory from "@/components/factories/DefaultFactory/DefaultFactory.vue"
 import { addBill, getBillsList, editBill } from "@/services/bills"
+import { findNewAttachments, findAttachmentsToDelete } from "@/helpers/_utils"
+import { saveFile, deleteFile } from "@/services/storage"
 import * as dayjs from 'dayjs'
 
 export default {
@@ -47,7 +49,27 @@ export default {
     },
     checkBill ({id, checked}) {
       editBill(id, { checked })
-    }
+    },
+    async billFilesChange(data) {
+      const bill = data.task
+      const files = data.files
+      const filesToSave = findNewAttachments(files.old, files.new)
+      const filesSavePromises = filesToSave.map(file => saveFile(file))
+      const savedFiles = await Promise.all(filesSavePromises)
+
+      const filesToDelete = findAttachmentsToDelete(files.old, files.new)
+      const filesDeletePromises = filesToDelete.map(file => deleteFile(file))
+      const deletedFilesNames = await Promise.all(filesDeletePromises)
+      
+      const unchangedFiles = bill.files ? bill.files.filter(file => !deletedFilesNames.includes(file.name)) : []
+
+      const newFiles = [
+        ...savedFiles,
+        ...unchangedFiles
+      ]
+
+      editBill(bill.id, { files: newFiles })
+    },
   },
   mounted () {
     this.getBills()

@@ -2,7 +2,7 @@
    <v-list lines="two">
       <v-list-item 
         :class="['px-0', calculateDateDiff(item.deadline) < 0 && item.checked && 'good']"
-        v-for="item of computedItems"
+        v-for="item of items"
         :key="item.id"
       >
         <v-list-item-avatar start>
@@ -25,7 +25,7 @@
             />
           </v-list-item-subtitle>
         </v-list-item-header>
-        <AttachmentsManager v-model:files-list="item.files" />
+        <AttachmentsManager :files-list="item.files" @attachments-change="(files) => filesChange(files, item)" />
       </v-list-item>
    </v-list>
 </template>

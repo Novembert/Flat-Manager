@@ -24,7 +24,12 @@
   <TasksCalendar v-if="showCallendar" :tasks="bills" :range="range" />
   <v-divider class="my-4"/>
   <h3>Lista</h3>
-  <CheckableList @check="checkBill" :items="bills" checkbox-color="blue-grey  darken-1" />
+  <CheckableList 
+    checkbox-color="blue-grey  darken-1"
+    :items="bills" 
+    @check="checkBill" 
+    @files-change="billFilesChange"
+  />
 </template>
 
 <script src="./Bills.js" />
