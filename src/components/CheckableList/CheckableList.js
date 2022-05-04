@@ -26,6 +26,9 @@ export default {
       const today = dayjs().hour(0).minute(0).second(0)
       const givenDate = dayjs(date, 'D/MM/YYYY')
       return givenDate.diff(today, 'day')
+    },
+    check(data) {
+      this.$emit('check', data)
     }
   }
 }

@@ -6,7 +6,7 @@ export const generateMonths = () => {
   for (let i = 0; i < 12; i++) {
     result.push({
       title: _.capitalize(dayjs().month(i).format('MMMM')),
-      value: i
+      value: i + 1
     })
   }
   return result

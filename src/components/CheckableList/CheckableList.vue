@@ -6,7 +6,7 @@
         :key="item.id"
       >
         <v-list-item-avatar start>
-          <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" />
+          <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" @change="check(item)"/>
         </v-list-item-avatar>
         <v-list-item-header>
           <v-list-item-title>{{ item.value ? `${item.value} ${item.currency} | ${item.name}` : item.name }}</v-list-item-title>

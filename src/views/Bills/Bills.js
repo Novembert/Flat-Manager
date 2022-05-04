@@ -2,7 +2,7 @@ import MonthAndYearPicker from "@/components/MonthAndYearPicker/MonthAndYearPick
 import CheckableList from "@/components/CheckableList/CheckableList.vue"
 import TasksCalendar from "@/components/TasksCalendar/TasksCalendar.vue"
 import DefaultFactory from "@/components/factories/DefaultFactory/DefaultFactory.vue"
-import { addBill, getBillsList } from "@/services/bills"
+import { addBill, getBillsList, editBill } from "@/services/bills"
 import * as dayjs from 'dayjs'
 
 export default {
@@ -14,12 +14,22 @@ export default {
   },
   data () {
     return {
-      month: null,
-      year: null,
+      range: {
+        month: null,
+        year: null
+      },
       bills: null,
       billsUnsubscribe: null,
       showCallendar: false,
       showBillsFactory: false,
+    }
+  },
+  watch: {
+    range: {
+      deep: true,
+      handler () {
+        this.getBills()
+      }
     }
   },
   methods: {
@@ -30,10 +40,13 @@ export default {
       this.showBillsFactory = false
     },
     getBills () {
-      this.billsUnsubscribe = getBillsList({ month: this.month + 1, year: this.year }, this.parseBills)
+      this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)
     },
     parseBills (billsList) {
       this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
+    },
+    checkBill ({id, checked}) {
+      editBill(id, { checked })
     }
   },
   mounted () {

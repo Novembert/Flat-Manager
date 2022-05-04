@@ -8,8 +8,8 @@
   </div>
   <h3 class="mb-4">Zakres</h3>
   <MonthAndYearPicker
-    v-model:month="month"
-    v-model:year="year"
+    v-model:month="range.month"
+    v-model:year="range.year"
   />
   <v-divider class="my-4" />
   <h3 class="mb-4 calendar-switch">
@@ -21,10 +21,10 @@
       v-model="showCallendar"
     />
   </h3>
-  <TasksCalendar v-if="showCallendar" :tasks="bills" />
+  <TasksCalendar v-if="showCallendar" :tasks="bills" :range="range" />
   <v-divider class="my-4"/>
   <h3>Lista</h3>
-  <CheckableList :items="bills" checkbox-color="blue-grey  darken-1" />
+  <CheckableList @check="checkBill" :items="bills" checkbox-color="blue-grey  darken-1" />
 </template>
 
 <script src="./Bills.js" />
