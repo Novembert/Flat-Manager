@@ -25,7 +25,7 @@
             />
           </v-list-item-subtitle>
         </v-list-item-header>
-        <AttachmentsManager :files-list="item.files" @attachments-change="(files) => filesChange(files, item)" />
+        <AttachmentsManager :files="item.files" @attachments-change="(files) => filesChange(files, item)" />
       </v-list-item>
    </v-list>
 </template>
