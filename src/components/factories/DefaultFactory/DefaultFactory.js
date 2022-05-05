@@ -3,44 +3,48 @@ import FactoryFormInputs from './FactoryFormInputs/FactoryFormInputs.vue'
 
 export default {
   components: {
-    FactoryFormInputs
+    FactoryFormInputs,
   },
   props: {
     open: {
       type: Boolean,
-      default: false
+      default: false,
     },
     factoryTitle: {
       type: String,
-      default: null
+      default: null,
     },
     hide: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  data () {
+  data() {
     return {
       formData: {},
       valid: null,
     }
   },
   computed: {
-    filteredInputs () {
-      return defaultInputs.filter(el => !(el.name in this.hide))
+    filteredInputs() {
+      return defaultInputs.filter((el) => !(el.name in this.hide))
     },
     isOpen: {
-      get () { return this.open },
-      set (value) { this.$emit('update:open', value) }
-    }
+      get() {
+        return this.open
+      },
+      set(value) {
+        this.$emit('update:open', value)
+      },
+    },
   },
   methods: {
-    submitForm () {
+    submitForm() {
       this.$emit('on-submit', this.formData)
     },
-    cancel () {
+    cancel() {
       this.formData = {}
       this.isOpen = false
-    }
-  }
+    },
+  },
 }

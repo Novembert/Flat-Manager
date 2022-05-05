@@ -1,5 +1,5 @@
 import { db } from '@/firebaseInit.js'
-import { addDoc, collection, onSnapshot, query,  updateDoc,  where, doc } from 'firebase/firestore'
+import { addDoc, collection, onSnapshot, query, updateDoc, where, doc } from 'firebase/firestore'
 import * as dayjs from 'dayjs'
 
 const billsCollection = collection(db, 'bills')
@@ -15,17 +15,12 @@ export const getBillsList = async ({ month, year }, callback) => {
   const end = new Date(`${year}-${month}-01`)
   end.setMonth(end.getMonth() + 1)
 
-  const billsQuery = query(
-    billsCollection,
-    where('deadline', '>=', start),
-    where('deadline', '<', end)
-  )
-
+  const billsQuery = query(billsCollection, where('deadline', '>=', start), where('deadline', '<', end))
 
   return onSnapshot(billsQuery, (querySnapshot) => {
     let allDocs = querySnapshot.docs
-    allDocs = allDocs.map((doc) => ({...doc.data(), id: doc.id}))
-    allDocs = allDocs.map(doc => ({ ...doc, deadline: dayjs(doc.deadline.toDate()) }))
+    allDocs = allDocs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    allDocs = allDocs.map((doc) => ({ ...doc, deadline: dayjs(doc.deadline.toDate()) }))
     callback(allDocs)
   })
 }

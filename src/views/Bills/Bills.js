@@ -1,10 +1,10 @@
-import MonthAndYearPicker from "@/components/MonthAndYearPicker/MonthAndYearPicker.vue"
-import CheckableList from "@/components/CheckableList/CheckableList.vue"
-import TasksCalendar from "@/components/TasksCalendar/TasksCalendar.vue"
-import DefaultFactory from "@/components/factories/DefaultFactory/DefaultFactory.vue"
-import { addBill, getBillsList, editBill } from "@/services/bills"
-import { findNewAttachments, findAttachmentsToDelete } from "@/helpers/_utils"
-import { saveFile, deleteFile } from "@/services/storage"
+import MonthAndYearPicker from '@/components/MonthAndYearPicker/MonthAndYearPicker.vue'
+import CheckableList from '@/components/CheckableList/CheckableList.vue'
+import TasksCalendar from '@/components/TasksCalendar/TasksCalendar.vue'
+import DefaultFactory from '@/components/factories/DefaultFactory/DefaultFactory.vue'
+import { addBill, getBillsList, editBill } from '@/services/bills'
+import { findNewAttachments, findAttachmentsToDelete } from '@/helpers/_utils'
+import { saveFile, deleteFile } from '@/services/storage'
 import * as dayjs from 'dayjs'
 
 export default {
@@ -12,13 +12,13 @@ export default {
     MonthAndYearPicker,
     CheckableList,
     TasksCalendar,
-    DefaultFactory
+    DefaultFactory,
   },
-  data () {
+  data() {
     return {
       range: {
         month: null,
-        year: null
+        year: null,
       },
       bills: null,
       billsUnsubscribe: null,
@@ -29,52 +29,49 @@ export default {
   watch: {
     range: {
       deep: true,
-      handler () {
+      handler() {
         this.getBills()
-      }
-    }
+      },
+    },
   },
   methods: {
-    async submitAddBill (data) {
+    async submitAddBill(data) {
       data.deadline = new Date(data.deadline)
       data.checked = false
       await addBill(data)
       this.showBillsFactory = false
     },
-    getBills () {
+    getBills() {
       this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)
     },
-    parseBills (billsList) {
-      this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
+    parseBills(billsList) {
+      this.bills = billsList.map((bill) => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
     },
-    checkBill ({id, checked}) {
+    checkBill({ id, checked }) {
       editBill(id, { checked })
     },
     async billFilesChange(data) {
       const bill = data.task
       const files = data.files
       const filesToSave = findNewAttachments(files.old, files.new)
-      const filesSavePromises = filesToSave.map(file => saveFile(file))
+      const filesSavePromises = filesToSave.map((file) => saveFile(file))
       const savedFiles = await Promise.all(filesSavePromises)
 
       const filesToDelete = findAttachmentsToDelete(files.old, files.new)
-      const filesDeletePromises = filesToDelete.map(file => deleteFile(file))
+      const filesDeletePromises = filesToDelete.map((file) => deleteFile(file))
       const deletedFilesNames = await Promise.all(filesDeletePromises)
-      
-      const unchangedFiles = bill.files ? bill.files.filter(file => !deletedFilesNames.includes(file.name)) : []
 
-      const newFiles = [
-        ...savedFiles,
-        ...unchangedFiles
-      ]
+      const unchangedFiles = bill.files ? bill.files.filter((file) => !deletedFilesNames.includes(file.name)) : []
+
+      const newFiles = [...savedFiles, ...unchangedFiles]
 
       editBill(bill.id, { files: newFiles })
     },
   },
-  mounted () {
+  mounted() {
     this.getBills()
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.billsUnsubscribe()
-  }
+  },
 }

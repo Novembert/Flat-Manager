@@ -1,23 +1,25 @@
-import { links } from "@/helpers/_globalData"
+import { links } from '@/helpers/_globalData'
 
 export default {
   props: {
     open: {
       type: Boolean,
-      default:false
-    }
+      default: false,
+    },
   },
   computed: {
     drawer: {
-      get () { return this.open },
-      set (value) {
+      get() {
+        return this.open
+      },
+      set(value) {
         this.$emit('update:open', value)
-      }
+      },
+    },
+  },
+  data() {
+    return {
+      links,
     }
   },
-  data () {
-    return {
-      links
-    }
-  }
 }

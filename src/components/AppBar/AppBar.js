@@ -1,26 +1,26 @@
-import Navigation from "./Navigation/Navigation.vue";
+import Navigation from './Navigation/Navigation.vue'
 
 export default {
   components: {
-    Navigation
+    Navigation,
   },
-  data () {
+  data() {
     return {
       pageTitle: '',
-      navOpen: false
+      navOpen: false,
     }
   },
-  watch:{
-    $route (){
-      this.pageTitle = this.getFirstPartOfTitle(window.document.title);
-    }
+  watch: {
+    $route() {
+      this.pageTitle = this.getFirstPartOfTitle(window.document.title)
+    },
   },
-  created () {
-    this.pageTitle = this.getFirstPartOfTitle(window.document.title);
+  created() {
+    this.pageTitle = this.getFirstPartOfTitle(window.document.title)
   },
   methods: {
-    getFirstPartOfTitle (title) {
+    getFirstPartOfTitle(title) {
       return title.split('|')[0]
-    }
-  }
+    },
+  },
 }

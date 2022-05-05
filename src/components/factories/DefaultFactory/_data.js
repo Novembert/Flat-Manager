@@ -26,5 +26,5 @@ export const defaultInputs = [
     name: 'deadline',
     rules: [rules.required],
     type: 'date',
-  }
+  },
 ]
