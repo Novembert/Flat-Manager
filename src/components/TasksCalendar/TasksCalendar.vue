@@ -1,6 +1,6 @@
 <template>
   <div class="calendar-container">
-    <Calendar :attributes="attributes" />
+    <Calendar ref="calendar" :attributes="attributes" />
   </div>
 </template>
 

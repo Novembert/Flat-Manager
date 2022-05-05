@@ -29,7 +29,7 @@ export default {
     }
   },
   created () {
-    this.pickedMonth = dayjs().month()
+    this.pickedMonth = dayjs().month() + 1
     this.pickedYear = dayjs().year()
   }
 }

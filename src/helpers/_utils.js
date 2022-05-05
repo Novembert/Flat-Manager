@@ -6,7 +6,7 @@ export const generateMonths = () => {
   for (let i = 0; i < 12; i++) {
     result.push({
       title: _.capitalize(dayjs().month(i).format('MMMM')),
-      value: i
+      value: i + 1
     })
   }
   return result
@@ -20,4 +20,20 @@ export const generateYears = () => {
     result.push(i)
   }
   return result
+}
+
+export const findNewAttachments = (oldAttachments, newAttachments) => {
+  const oldAttachmentsNames = oldAttachments.map(att => att.name)
+  return newAttachments.filter(
+    attachment => !oldAttachmentsNames.includes(attachment.name)
+  )
+}
+
+// finds an array of attachments that you have to delete from Firebase Storage
+// because they arent used anymore
+export const findAttachmentsToDelete = (oldAttachments, newAttachments) => {
+  const newAttachmentsNames = newAttachments.map(att => att.name)
+  return oldAttachments.filter(
+    attachment => !newAttachmentsNames.includes(attachment.name)
+  )
 }

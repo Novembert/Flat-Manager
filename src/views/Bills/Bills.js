@@ -2,7 +2,9 @@ import MonthAndYearPicker from "@/components/MonthAndYearPicker/MonthAndYearPick
 import CheckableList from "@/components/CheckableList/CheckableList.vue"
 import TasksCalendar from "@/components/TasksCalendar/TasksCalendar.vue"
 import DefaultFactory from "@/components/factories/DefaultFactory/DefaultFactory.vue"
-import { addBill, getBillsList } from "@/services/bills"
+import { addBill, getBillsList, editBill } from "@/services/bills"
+import { findNewAttachments, findAttachmentsToDelete } from "@/helpers/_utils"
+import { saveFile, deleteFile } from "@/services/storage"
 import * as dayjs from 'dayjs'
 
 export default {
@@ -15,8 +17,8 @@ export default {
   data () {
     return {
       range: {
-        year: null,
-        month: null
+        month: null,
+        year: null
       },
       bills: null,
       billsUnsubscribe: null,
@@ -39,12 +41,35 @@ export default {
       await addBill(data)
       this.showBillsFactory = false
     },
-    async getBills () {
-      this.billsUnsubscribe = await getBillsList({ month: this.range.month + 1, year: this.range.year }, this.parseBills)
+    getBills () {
+      this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)
     },
     parseBills (billsList) {
       this.bills = billsList.map(bill => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
-    }
+    },
+    checkBill ({id, checked}) {
+      editBill(id, { checked })
+    },
+    async billFilesChange(data) {
+      const bill = data.task
+      const files = data.files
+      const filesToSave = findNewAttachments(files.old, files.new)
+      const filesSavePromises = filesToSave.map(file => saveFile(file))
+      const savedFiles = await Promise.all(filesSavePromises)
+
+      const filesToDelete = findAttachmentsToDelete(files.old, files.new)
+      const filesDeletePromises = filesToDelete.map(file => deleteFile(file))
+      const deletedFilesNames = await Promise.all(filesDeletePromises)
+      
+      const unchangedFiles = bill.files ? bill.files.filter(file => !deletedFilesNames.includes(file.name)) : []
+
+      const newFiles = [
+        ...savedFiles,
+        ...unchangedFiles
+      ]
+
+      editBill(bill.id, { files: newFiles })
+    },
   },
   mounted () {
     this.getBills()

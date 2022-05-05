@@ -10,11 +10,29 @@ export default {
     tasks: {
       type: Array,
       default: () => []
+    },
+    range: {
+      type: Object,
+      default: null,
+      required: true
+    }
+  },
+  watch: {
+    range: {
+      deep: true,
+      handler (value) {
+        this.calendar.move({ ...value })
+      }
     }
   },
   computed: {
     attributes () {
       return [...this.parseTasks(this.tasks), today]
+    }
+  },
+  data () {
+    return {
+      calendar: null
     }
   },
   methods: {
@@ -38,5 +56,8 @@ export default {
         }
       })
     }
+  },
+  mounted () {
+    this.calendar = this.$refs.calendar
   }
 }
