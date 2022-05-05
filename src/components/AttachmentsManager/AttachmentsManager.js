@@ -12,6 +12,7 @@ export default {
       open: false,
       filesToSave: [],
       addAttachmentMode: false,
+      fileDeleteDialog: false,
     }
   },
   methods: {
@@ -25,7 +26,22 @@ export default {
     deleteFile(index) {
       const filesCopy = clone(this.files)
       filesCopy.splice(index, 1)
+      this.fileDeleteDialog = false
       this.$emit('attachments-change', { old: this.files, new: filesCopy })
+    },
+    downloadFile({ url, name }) {
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'blob'
+      xhr.onload = function () {
+        var blob = xhr.response
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = name
+        link.click()
+        URL.revokeObjectURL(link.href)
+      }
+      xhr.open('GET', url)
+      xhr.send()
     },
   },
 }
