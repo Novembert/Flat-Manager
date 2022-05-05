@@ -1,7 +1,5 @@
 <template>
-  <v-app-bar 
-    color="primary"
-    density="compact">
+  <v-app-bar color="primary" density="compact">
     <template #prepend>
       <v-app-bar-nav-icon @click="navOpen = !navOpen"></v-app-bar-nav-icon>
     </template>
@@ -10,4 +8,4 @@
   <Navigation v-model:open="navOpen" />
 </template>
 
-<script src='./AppBar.js' />
+<script src="./AppBar.js" />
