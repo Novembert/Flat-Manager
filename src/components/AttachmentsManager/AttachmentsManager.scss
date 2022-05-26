@@ -2,6 +2,10 @@
   background: #EEEEEE;
 }
 
+#delete-file-actions .v-btn::v-deep {
+  background: transparent;
+}
+
 .add-attachment-form {
   display: flex;
   justify-content: flex-end;

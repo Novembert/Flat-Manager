@@ -1,72 +1,52 @@
 <template>
-  <v-dialog :model-value="open" @click:outside="open = false">
+  <v-dialog key="attachemnts-dialog" :model-value="open" @click:outside="open = false">
     <template #activator>
       <div>
-        <v-btn
-          class="text-none mr-2"
-          size="small"
-          icon="mdi-paperclip"
-          @click="open = true"
-        >
-        </v-btn>
-        <v-badge color="info" class="badge" v-if="files?.length" :content="files.length">
-        </v-badge>
+        <v-btn class="text-none mr-2" size="small" icon="mdi-paperclip" @click="open = true"> </v-btn>
+        <v-badge v-if="files?.length" color="info" class="badge" :content="files.length"> </v-badge>
       </div>
     </template>
-     <v-card class="pt-2 pb-6 px-4 dialog-card">
-       <v-card-title class="px-0 mb-2 d-flex justify-space-between">
-          <span class="text-h5">Załączniki</span>
-          <v-btn
-            :icon="addAttachmentMode ? 'mdi-arrow-left' : 'mdi-plus'"
-            size="x-small"
-            :color="addAttachmentMode ? 'cancel' : 'success'"
-            @click="addAttachmentMode = !addAttachmentMode">
-          </v-btn>
-        </v-card-title>
-        <div class="add-attachment-form" v-if="addAttachmentMode">
-          <v-file-input
-            v-model="filesToSave"
-            density="compact"
-            variant="outlined"
-            hide-details
-            multiple
-          />
-          <v-btn
-            :disabled="filesToSave.length === 0"
-            color="success"
-            class="my-2"
-            @click="save"
-          >
-            Zapisz
-          </v-btn>
-          <v-divider />
-        </div>
-        <v-list :key="JSON.stringify(files)">
-          <v-list-item
-            class="px-0"
-            v-for="(file, index) of files"
-            :key="file.name"
-          >
-            <v-list-item-header>
-              <v-list-item-title>{{ file.name }}</v-list-item-title>
-            </v-list-item-header>
-            
-            <v-btn
-              class="mx-2"
-              icon="mdi-download"
-              size="x-small"
-            >
-            </v-btn>
-            <v-btn
-              icon="mdi-delete"
-              size="x-small"
-              color="error"
-              @click="deleteFile(index)"
-            >
-            </v-btn>
-          </v-list-item>
-        </v-list>
-     </v-card>
+    <v-card class="pt-2 pb-6 px-4 dialog-card">
+      <v-card-title class="px-0 mb-2 d-flex justify-space-between">
+        <span class="text-h5">Załączniki</span>
+        <v-btn
+          :icon="addAttachmentMode ? 'mdi-arrow-left' : 'mdi-plus'"
+          size="x-small"
+          :color="addAttachmentMode ? 'cancel' : 'success'"
+          @click="addAttachmentMode = !addAttachmentMode"
+        >
+        </v-btn>
+      </v-card-title>
+      <div v-if="addAttachmentMode" class="add-attachment-form">
+        <v-file-input v-model="filesToSave" density="compact" variant="outlined" hide-details multiple />
+        <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Zapisz </v-btn>
+        <v-divider />
+      </div>
+      <v-list :key="JSON.stringify(files)">
+        <v-list-item v-for="(file, index) of files" :key="file.name" class="px-0">
+          <v-list-item-header>
+            <v-list-item-title>{{ file.name }}</v-list-item-title>
+          </v-list-item-header>
+
+          <v-btn class="mx-2" icon="mdi-download" size="x-small" @click="downloadFile(file)"> </v-btn>
+          <v-dialog key="file-delete-dialog" :model-value="fileDeleteDialog" @click:outside="fileDeleteDialog = false">
+            <template #activator>
+              <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = true"> </v-btn>
+            </template>
+            <v-card class="pt-2 pb-6 px-4 dialog-card">
+              <v-card-title class="px-0 mb-2 d-flex justify-space-between">
+                <span class="text-h5">Czy na pewno chesz usunąć załącznik?</span>
+              </v-card-title>
+              <v-card-subtitle>Tej operacji nie da się cofnąć</v-card-subtitle>
+              <v-card-actions id="delete-file-actions" class="justify-end">
+                <v-btn @click="fileDeleteDialog = false"> Nie </v-btn>
+                <v-btn class="ml-4" color="success" @click="deleteFile(index)">Tak</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-list-item>
+      </v-list>
+    </v-card>
   </v-dialog>
 </template>
 

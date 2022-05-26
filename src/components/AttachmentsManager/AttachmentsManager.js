@@ -1,31 +1,47 @@
-import { clone } from "lodash"
+import { clone } from 'lodash'
 
 export default {
   props: {
     files: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
-  data () {
+  data() {
     return {
       open: false,
       filesToSave: [],
-      addAttachmentMode: false
+      addAttachmentMode: false,
+      fileDeleteDialog: false,
     }
   },
   methods: {
-    save () {
+    save() {
       const filesCopy = clone(this.files)
       filesCopy.push(...this.filesToSave)
-      this.$emit('attachments-change', {old: this.files, new: filesCopy})
+      this.$emit('attachments-change', { old: this.files, new: filesCopy })
       this.filesToSave = []
       this.addAttachmentMode = false
     },
-    deleteFile (index) {
+    deleteFile(index) {
       const filesCopy = clone(this.files)
       filesCopy.splice(index, 1)
-      this.$emit('attachments-change', {old: this.files, new: filesCopy})
-    }
-  }
+      this.fileDeleteDialog = false
+      this.$emit('attachments-change', { old: this.files, new: filesCopy })
+    },
+    downloadFile({ url, name }) {
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'blob'
+      xhr.onload = function () {
+        var blob = xhr.response
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = name
+        link.click()
+        URL.revokeObjectURL(link.href)
+      }
+      xhr.open('GET', url)
+      xhr.send()
+    },
+  },
 }

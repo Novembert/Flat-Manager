@@ -21,29 +21,30 @@ const myCustomLightTheme = {
     info: '#2196F3',
     success: '#4CAF50',
     warning: '#FB8C00',
-  }
+  },
 }
 
 export default createVuetify(
-  { components, 
+  {
+    components,
     directives,
     theme: {
       defaultTheme: 'myCustomLightTheme',
       themes: {
         myCustomLightTheme,
-      }
+      },
     },
     defaults: {
       VTextField: {
         variant: 'outlined',
-        placeholder: 'Wpisz'
+        placeholder: 'Wpisz',
       },
       VAutocomplete: {
         variant: 'outlined',
         placeholder: 'Wybierz',
-        dense: true
-      }
-    } 
+        dense: true,
+      },
+    },
   }
   // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 )

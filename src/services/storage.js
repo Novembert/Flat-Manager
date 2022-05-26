@@ -8,7 +8,7 @@ export const saveFile = async (file) => {
   await uploadBytes(fileRef, file)
   return {
     name: file.name,
-    url: await getDownloadURL(fileRef)
+    url: await getDownloadURL(fileRef),
   }
 }
 

@@ -1,25 +1,25 @@
-import { createRouter, createWebHistory  } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
 import WelcomeScreen from '@/views/WelcomeScreen/WelcomeScreen.vue'
 import Bills from '@/views/Bills/Bills.vue'
 
 const routes = [
   {
-    path: "/bills",
-    name: "bills",
+    path: '/bills',
+    name: 'bills',
     component: Bills,
     meta: {
-      title: "Rachunki",
+      title: 'Rachunki',
     },
   },
   {
-    path: "/",
-    name: "welcome",
+    path: '/',
+    name: 'welcome',
     component: WelcomeScreen,
     meta: {
-      title: "Start",
+      title: 'Start',
     },
   },
-  
+
   // {
   //   path: "/blogs",
   //   name: "blogs",
@@ -44,16 +44,16 @@ const routes = [
   //     title: "Register",
   //   },
   // },
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
+})
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | Mieszkanie`;
-  next();
-});
+  document.title = `${to.meta.title} | Mieszkanie`
+  next()
+})
 
-export default router;
+export default router

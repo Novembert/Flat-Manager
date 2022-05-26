@@ -1,4 +1,4 @@
-import { generateMonths, generateYears } from "@/helpers/_utils"
+import { generateMonths, generateYears } from '@/helpers/_utils'
 import * as dayjs from 'dayjs'
 
 export default {
@@ -10,9 +10,9 @@ export default {
     year: {
       type: [String, Number],
       default: null,
-    }
+    },
   },
-  data () {
+  data() {
     return {
       months: generateMonths(),
       years: generateYears(),
@@ -20,16 +20,24 @@ export default {
   },
   computed: {
     pickedMonth: {
-      get () { return this.month },
-      set (value) { this.$emit('update:month', value) }
+      get() {
+        return this.month
+      },
+      set(value) {
+        this.$emit('update:month', value)
+      },
     },
     pickedYear: {
-      get () { return this.year },
-      set (value) { this.$emit('update:year', value) }
-    }
+      get() {
+        return this.year
+      },
+      set(value) {
+        this.$emit('update:year', value)
+      },
+    },
   },
-  created () {
+  created() {
     this.pickedMonth = dayjs().month() + 1
     this.pickedYear = dayjs().year()
-  }
+  },
 }

@@ -2,31 +2,31 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     to: {
       type: String,
-      default: 'welcome'
+      default: 'welcome',
     },
     icon: {
       type: [Array, String],
-      default: null
+      default: null,
     },
     background: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
-    destination () {
+    destination() {
       return {
-        name: this.to
+        name: this.to,
       }
+    },
+  },
+  data() {
+    return {
+      notifications: 3,
     }
   },
-  data () {
-    return {
-      notifications: 3
-    }
-  }
 }

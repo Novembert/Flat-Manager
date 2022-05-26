@@ -1,19 +1,19 @@
-import { DatePicker } from 'v-calendar';
+import { DatePicker } from 'v-calendar'
 
 export default {
   components: {
-    DatePicker
+    DatePicker,
   },
   props: {
     inputs: {
       type: Array,
-      default: null
+      default: null,
     },
     modelValue: {
       type: Object,
       default: null,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     value: {
@@ -22,7 +22,7 @@ export default {
       },
       set(value) {
         this.$emit('update:modelValue', value)
-      }
-    }
-  }
+      },
+    },
+  },
 }
