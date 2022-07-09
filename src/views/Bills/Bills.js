@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     async submitAddBill(data) {
-      console.log('1', data)
       data.deadline = new Date(data.deadline)
       data.checked = false
       await addBill(data)
@@ -48,7 +47,7 @@ export default {
     parseBills(billsList) {
       this.bills = billsList.map((bill) => ({
         ...bill,
-        deadline: bill.deadline ? dayjs(bill.deadline).format('DD/MM/YYYY') : '11/08/2000',
+        deadline: dayjs(bill.deadline).format('DD/MM/YYYY'),
       }))
     },
     checkBill({ id, checked }) {

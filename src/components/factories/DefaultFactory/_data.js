@@ -17,7 +17,7 @@ export const defaultInputs = [
   {
     label: 'Waluta',
     name: 'currency',
-    // rules: [rules.required],
+    rules: [rules.required],
     type: 'autocomplete',
     items: currenciesToAutocomplete,
   },
@@ -26,5 +26,6 @@ export const defaultInputs = [
     name: 'deadline',
     rules: [rules.required],
     type: 'date',
+    max: '2099-12-31',
   },
 ]

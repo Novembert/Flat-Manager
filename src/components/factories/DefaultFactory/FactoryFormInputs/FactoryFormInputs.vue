@@ -10,14 +10,7 @@
       :name="input.name"
       :label="input.label"
     />
-    <v-text-field
-      v-else
-      v-model="value[input.name]"
-      :label="input.label"
-      :type="input.type"
-      :rules="input.rules"
-      :name="input.name"
-    />
+    <v-text-field v-else v-model="value[input.name]" v-bind="input" />
   </div>
 </template>
 
