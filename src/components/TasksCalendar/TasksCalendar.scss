@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
 
-  .vc-container::v-deep {
+  :deep(.vc-container) {
     .is-left, .is-right {
       display: none !important;
     }  

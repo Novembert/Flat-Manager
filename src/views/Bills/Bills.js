@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     async submitAddBill(data) {
+      console.log('1', data)
       data.deadline = new Date(data.deadline)
       data.checked = false
       await addBill(data)
@@ -45,7 +46,10 @@ export default {
       this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)
     },
     parseBills(billsList) {
-      this.bills = billsList.map((bill) => ({ ...bill, deadline: dayjs(bill.deadline).format('DD/MM/YYYY') }))
+      this.bills = billsList.map((bill) => ({
+        ...bill,
+        deadline: bill.deadline ? dayjs(bill.deadline).format('DD/MM/YYYY') : '11/08/2000',
+      }))
     },
     checkBill({ id, checked }) {
       editBill(id, { checked })

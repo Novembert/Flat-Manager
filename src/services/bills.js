@@ -5,6 +5,7 @@ import * as dayjs from 'dayjs'
 const billsCollection = collection(db, 'bills')
 
 export const addBill = (data) => {
+  console.log(data)
   addDoc(billsCollection, data).catch((err) => {
     console.log('addBill Error: ', err)
   })

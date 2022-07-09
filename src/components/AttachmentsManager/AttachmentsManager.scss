@@ -1,8 +1,8 @@
-.v-btn::v-deep {
+:deep(.v-btn) {
   background: #EEEEEE;
 }
 
-#delete-file-actions .v-btn::v-deep {
+#delete-file-actions :deep(.v-btn) {
   background: transparent;
 }
 

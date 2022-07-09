@@ -1,5 +1,5 @@
 import rules from '@/helpers/validationRules'
-import { currencies } from '@/helpers/_globalData'
+import { currenciesToAutocomplete } from '@/helpers/_globalData'
 
 export const defaultInputs = [
   {
@@ -19,7 +19,7 @@ export const defaultInputs = [
     name: 'currency',
     // rules: [rules.required],
     type: 'autocomplete',
-    items: currencies,
+    items: currenciesToAutocomplete,
   },
   {
     label: 'Deadline',

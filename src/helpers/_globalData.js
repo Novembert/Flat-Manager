@@ -50,3 +50,4 @@ export const links = [
 ]
 
 export const currencies = ['DKK', 'EUR', 'PLN', 'USD']
+export const currenciesToAutocomplete = currencies.map((curr) => ({ title: curr, value: curr }))

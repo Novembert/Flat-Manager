@@ -4,7 +4,7 @@
       <v-autocomplete
         v-model="pickedMonth"
         :items="months"
-        item-text="title"
+        item-title="title"
         items-value="value"
         hide-details
         label="Miesiąc"
