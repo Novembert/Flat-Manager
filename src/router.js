@@ -19,31 +19,6 @@ const routes = [
       title: 'Start',
     },
   },
-
-  // {
-  //   path: "/blogs",
-  //   name: "blogs",
-  //   component: BlogsView,
-  //   meta: {
-  //     title: "Blogs",
-  //   },
-  // },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   component: LoginView,
-  //   meta: {
-  //     title: "Login",
-  //   },
-  // },
-  // {
-  //   path: "/register",
-  //   name: "register",
-  //   component: RegisterView,
-  //   meta: {
-  //     title: "Register",
-  //   },
-  // },
 ]
 
 const router = createRouter({

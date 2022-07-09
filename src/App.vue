@@ -4,6 +4,7 @@
     <v-main class="pa-4 mt-14">
       <router-view />
     </v-main>
+    <AlertsHub />
   </v-app>
 </template>
 
