@@ -1,5 +1,6 @@
 import { defaultInputs } from './_data'
 import FactoryFormInputs from './FactoryFormInputs/FactoryFormInputs.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -39,9 +40,16 @@ export default {
     },
   },
   methods: {
+    ...mapActions('alerts', ['addAlert']),
     submitForm() {
       if (this.valid) {
         this.$emit('on-submit', this.formData)
+      } else {
+        this.addAlert({
+          id: 'FACTORY-INVALID',
+          content: 'Proszę wypełnić wszystkie wymagane pola',
+          type: 'error',
+        })
       }
     },
     cancel() {

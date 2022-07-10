@@ -13,7 +13,7 @@ const getters = {
 
 const actions = {
   async addAlert({ commit, state, dispatch }, { id, timeout = 4000, ...rest }) {
-    if (state.find((el) => el.id === id)) {
+    if (state.items.find((el) => el.id === id)) {
       await dispatch('removeAlert', id)
     }
     await commit('addItem', { id, timeout, ...rest })
