@@ -1,6 +1,10 @@
 import { clone } from 'lodash'
+import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation.vue'
 
 export default {
+  components: {
+    DeleteConfirmation,
+  },
   props: {
     files: {
       type: Array,

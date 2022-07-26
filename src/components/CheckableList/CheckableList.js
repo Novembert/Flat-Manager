@@ -1,9 +1,11 @@
 import * as dayjs from 'dayjs'
 import AttachmentsManager from '@/components/AttachmentsManager/AttachmentsManager.vue'
+import MiniToolbar from '@/components/MiniToolbar/MiniToolbar.vue'
 
 export default {
   components: {
     AttachmentsManager,
+    MiniToolbar,
   },
   props: {
     items: {

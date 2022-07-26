@@ -1,7 +1,7 @@
 <template>
   <v-dialog key="attachemnts-dialog" :model-value="open" @click:outside="open = false">
     <template #activator>
-      <div>
+      <div class="attachments-btn">
         <v-btn class="text-none mr-2" size="small" icon="mdi-paperclip" @click="open = true"> </v-btn>
         <v-badge v-if="files?.length" color="info" class="badge" :content="files.length"> </v-badge>
       </div>
@@ -33,16 +33,11 @@
             <template #activator>
               <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = true"> </v-btn>
             </template>
-            <v-card class="pt-2 pb-6 px-4 dialog-card">
-              <v-card-title class="px-0 mb-2 d-flex justify-space-between">
-                <span class="text-h5">Czy na pewno chesz usunąć załącznik?</span>
-              </v-card-title>
-              <v-card-subtitle>Tej operacji nie da się cofnąć</v-card-subtitle>
-              <v-card-actions id="delete-file-actions" class="justify-end">
-                <v-btn @click="fileDeleteDialog = false"> Nie </v-btn>
-                <v-btn class="ml-4" color="success" @click="deleteFile(index)">Tak</v-btn>
-              </v-card-actions>
-            </v-card>
+            <DeleteConfirmation
+              heading="Czy na pewno chesz usunąć załącznik?"
+              @cancel="fileDeleteDialog = false"
+              @submit="deleteFile(index)"
+            />
           </v-dialog>
         </v-list-item>
       </v-list>
