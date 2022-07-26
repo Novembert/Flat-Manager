@@ -17,9 +17,10 @@ export const addBill = (data) => {
 }
 
 export const getBillsList = async ({ month, year }, callback) => {
-  const start = new Date(`${year}-${month}-01`)
-  const end = new Date(`${year}-${month}-01`)
+  const start = new Date(`${year}/${month}/01`)
+  const end = new Date(`${year}/${month}/01`)
   end.setMonth(end.getMonth() + 1)
+
   try {
     const billsQuery = query(billsCollection, where('deadline', '>=', start), where('deadline', '<', end))
 
@@ -29,8 +30,8 @@ export const getBillsList = async ({ month, year }, callback) => {
       allDocs = allDocs.map((doc) => ({ ...doc, deadline: dayjs(doc.deadline.toDate()) }))
       callback(allDocs)
     })
-  } catch (e) {
-    console.log('getBillsList Error: ', e)
+  } catch (err) {
+    console.log('getBillsList Error: ', err)
     store.dispatch('alerts/addAlert', {
       id: 'GET-BILLS-LIST-ERROR',
       content: 'Wystąpił niespodziewany błąd podczas pobierania listy rachunków',
