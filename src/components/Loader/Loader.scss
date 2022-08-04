@@ -1,0 +1,11 @@
+.loader-wrapper {
+  opacity: 80%;
+  position: absolute;
+  top: 0;
+  z-index: 2401;
+
+  .loader-container {
+    position: fixed;
+    top: 0;
+  }
+}

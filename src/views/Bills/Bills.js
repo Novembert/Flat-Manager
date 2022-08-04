@@ -35,11 +35,11 @@ export default {
     },
   },
   methods: {
-    async submitAddBill(data) {
+    submitAddBill(data) {
       data.deadline = new Date(data.deadline)
       data.checked = false
-      await addBill(data)
       this.showBillsFactory = false
+      addBill(data)
     },
     getBills() {
       this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)

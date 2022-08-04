@@ -6,13 +6,25 @@ import store from '@/store'
 const billsCollection = collection(db, 'bills')
 
 export const addBill = (data) => {
-  addDoc(billsCollection, data).catch((err) => {
-    console.log('addBill Error: ', err)
-    store.dispatch('alerts/addAlert', {
-      id: 'ADD-BILL-INVALID',
-      content: 'Wystąpił niespodziewany błąd podczas dodawania rachunku',
-      type: 'error',
-    })
+  return new Promise((resolve) => {
+    store.commit('loader/setActive', true)
+    setTimeout(() => {
+      addDoc(billsCollection, data)
+        .catch((err) => {
+          console.log('addBill Error: ', err)
+          store.dispatch('alerts/addAlert', {
+            id: 'ADD-BILL-INVALID',
+            content: 'Wystąpił niespodziewany błąd podczas dodawania rachunku',
+            type: 'error',
+          })
+        })
+        .then((res) => {
+          resolve(res)
+        })
+        .finally(() => {
+          store.commit('loader/setActive', false)
+        })
+    }, 200)
   })
 }
 

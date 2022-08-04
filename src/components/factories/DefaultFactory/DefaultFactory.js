@@ -44,6 +44,7 @@ export default {
     submitForm() {
       if (this.valid) {
         this.$emit('on-submit', this.formData)
+        this.formData = {}
       } else {
         this.addAlert({
           id: 'FACTORY-INVALID',
