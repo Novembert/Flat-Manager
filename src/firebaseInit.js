@@ -30,5 +30,5 @@ const analytics = getAnalytics(app)
 const functions = getFunctions(app)
 connectFunctionsEmulator(functions, 'localhost', 8082)
 
-export { analytics, db, storage }
+export { analytics, db, storage, functions }
 export default app

@@ -28,4 +28,4 @@ Object.assign(exports, createUpdaters);
 Object.assign(exports, deleteUpdaters);
 
 /* init collections counter */
-exports.countCollections = functions.https.onRequest(countCollections);
+exports.countCollections = functions.https.onCall(countCollections);

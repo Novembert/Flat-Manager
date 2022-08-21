@@ -1,13 +1,5 @@
 <template>
-  <SectionLink
-    v-for="link of links.slice(1)"
-    :key="link.title"
-    class="mb-4 d-block"
-    :title="link.title"
-    :to="link.to"
-    :icon="link.icon"
-    :background="link.background"
-  />
+  <SectionLink v-for="link of links.slice(1)" :key="link.title" class="mb-4 d-block" v-bind="link" />
 </template>
 
 <script src="./WelcomeScreen.js" />

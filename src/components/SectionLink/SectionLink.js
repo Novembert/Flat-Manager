@@ -16,6 +16,10 @@ export default {
       type: String,
       default: '',
     },
+    notifications: {
+      type: Number,
+      default: null,
+    },
   },
   computed: {
     destination() {
@@ -23,10 +27,5 @@ export default {
         name: this.to,
       }
     },
-  },
-  data() {
-    return {
-      notifications: 3,
-    }
   },
 }
