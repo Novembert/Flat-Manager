@@ -1,8 +1,10 @@
 const functions = require("firebase-functions");
 const collections = require("./data/collectionsToUpdate");
 const counterUpdate = require("./myFunctions/counterUpdate");
+const countCollections = require("./myFunctions/countCollections");
 const _ = require("lodash");
 
+/* collections listners */
 const updaterPromisesCreate = collections.map((el) => {
   return functions.firestore.document(`${el}/{id}`)
       .onCreate((request, response) => counterUpdate(request, response, el));
@@ -24,3 +26,6 @@ for (let i = 0; i < collections.length; i++) {
 
 Object.assign(exports, createUpdaters);
 Object.assign(exports, deleteUpdaters);
+
+/* init collections counter */
+exports.countCollections = functions.https.onRequest(countCollections);
