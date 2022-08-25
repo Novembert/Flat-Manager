@@ -5,11 +5,12 @@
       <router-view />
     </v-main>
     <AlertsHub />
-    <Loader />
+    <Loader :is-active="isActive" />
   </v-app>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AppBar from '@/components/AppBar/AppBar.vue'
 import AlertsHub from '@/components/AlertsHub/AlertsHub.vue'
 import Loader from '@/components/Loader/Loader.vue'
@@ -25,5 +26,8 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    ...mapGetters('loader', ['isActive']),
+  },
 }
 </script>

@@ -27,8 +27,7 @@
           />
         </v-list-item-subtitle>
       </v-list-item-header>
-      <AttachmentsManager :files="item.files" @attachments-change="(files) => filesChange(files, item)" />
-      <MiniToolbar />
+      <slot :row="item" name="extra"> </slot>
     </v-list-item>
   </v-list>
 </template>

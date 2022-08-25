@@ -12,12 +12,14 @@
   <TasksCalendar v-if="showCallendar" :tasks="bills" :range="range" />
   <v-divider class="my-4" />
   <h3>Lista</h3>
-  <CheckableList
-    checkbox-color="blue-grey  darken-1"
-    :items="bills"
-    @check="checkBill"
-    @files-change="billFilesChange"
-  />
+  <CheckableList checkbox-color="blue-grey  darken-1" :items="bills" @check="checkBill" @files-change="billFilesChange">
+    <template #extra="data">
+      <AttachmentsManager
+        :files="data.row.files"
+        @attachments-change="(files) => billFilesChange({ files, bill: data.row })"
+      />
+      <MiniToolbar @submit-delete="deleteBill(data.row)" />
+    </template>
+  </CheckableList>
 </template>
-
 <script src="./Bills.js" />

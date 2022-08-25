@@ -26,8 +26,5 @@ export default {
     check(data) {
       this.$emit('check', data)
     },
-    filesChange(files, task) {
-      this.$emit('files-change', { files, task })
-    },
   },
 }

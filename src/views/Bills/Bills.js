@@ -1,8 +1,10 @@
 import MonthAndYearPicker from '@/components/MonthAndYearPicker/MonthAndYearPicker.vue'
 import CheckableList from '@/components/CheckableList/CheckableList.vue'
 import TasksCalendar from '@/components/TasksCalendar/TasksCalendar.vue'
+import AttachmentsManager from '@/components/AttachmentsManager/AttachmentsManager.vue'
+import MiniToolbar from '@/components/MiniToolbar/MiniToolbar.vue'
 import DefaultFactory from '@/components/factories/DefaultFactory/DefaultFactory.vue'
-import { addBill, getBillsList, editBill } from '@/services/bills'
+import { addBill, getBillsList, editBill, deleteBill } from '@/services/bills'
 import { findNewAttachments, findAttachmentsToDelete } from '@/helpers/_utils'
 import { saveFile, deleteFile } from '@/services/storage'
 import * as dayjs from 'dayjs'
@@ -13,6 +15,8 @@ export default {
     CheckableList,
     TasksCalendar,
     DefaultFactory,
+    MiniToolbar,
+    AttachmentsManager,
   },
   data() {
     return {
@@ -54,7 +58,7 @@ export default {
       editBill(id, { checked })
     },
     async billFilesChange(data) {
-      const bill = data.task
+      const bill = data.bill
       const files = data.files
       const filesToSave = findNewAttachments(files.old, files.new)
       const filesSavePromises = filesToSave.map((file) => saveFile(file))
@@ -67,9 +71,9 @@ export default {
       const unchangedFiles = bill.files ? bill.files.filter((file) => !deletedFilesNames.includes(file.name)) : []
 
       const newFiles = [...savedFiles, ...unchangedFiles]
-
       editBill(bill.id, { files: newFiles })
     },
+    deleteBill,
   },
   mounted() {
     this.getBills()

@@ -1,5 +1,6 @@
 import { db } from '@/firebaseInit.js'
-import { addDoc, collection, onSnapshot, query, updateDoc, where, doc } from 'firebase/firestore'
+import { addDoc, collection, onSnapshot, query, updateDoc, where, doc, deleteDoc } from 'firebase/firestore'
+import { deleteFile } from './storage'
 import * as dayjs from 'dayjs'
 import store from '@/store'
 
@@ -61,5 +62,29 @@ export const editBill = (id, data) => {
       content: 'Wystąpił niespodziewany błąd podczas edytowania rachunku',
       type: 'error',
     })
+  })
+}
+
+export const deleteBill = (bill) => {
+  return new Promise((resolve) => {
+    store.commit('loader/setActive', true)
+    const filesToDelete = bill?.files?.map((file) => deleteFile(file)) || []
+    Promise.all(filesToDelete)
+      .then(
+        deleteDoc(doc(db, 'bills', bill.id)).then((res) => {
+          resolve(res)
+        })
+      )
+      .catch((err) => {
+        console.log('deleteBill Error: ', err)
+        store.dispatch('alerts/addAlert', {
+          id: 'DELETE-BILL-INVALID',
+          content: 'Wystąpił niespodziewany błąd podczas usuwania rachunku',
+          type: 'error',
+        })
+      })
+      .finally(() => {
+        store.commit('loader/setActive', false)
+      })
   })
 }
