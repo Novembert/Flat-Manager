@@ -22,21 +22,26 @@
         <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Zapisz </v-btn>
         <v-divider />
       </div>
-      <v-list :key="JSON.stringify(files)">
-        <v-list-item v-for="(file, index) of files" :key="file.name" class="px-0">
+      <v-list>
+        <v-list-item v-for="file of files" :key="file.url" class="px-0">
           <v-list-item-header>
-            <v-list-item-title>{{ file.name }}</v-list-item-title>
+            <v-list-item-title>{{ file.name }} {{ file.url }}</v-list-item-title>
           </v-list-item-header>
 
           <v-btn class="mx-2" icon="mdi-download" size="x-small" @click="downloadFile(file)"> </v-btn>
-          <v-dialog key="file-delete-dialog" :model-value="fileDeleteDialog" @click:outside="fileDeleteDialog = false">
+          <v-dialog
+            :key="`file-delete-dialog-${file.url}`"
+            :model-value="fileDeleteDialog"
+            @click:outside="fileDeleteDialog = false"
+          >
             <template #activator>
-              <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = true"> </v-btn>
+              <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = file.url"> </v-btn>
             </template>
             <DeleteConfirmation
+              :key="file.url"
               heading="Czy na pewno chesz usunąć załącznik?"
               @cancel="fileDeleteDialog = false"
-              @submit="deleteFile(index)"
+              @submit="deleteFile()"
             />
           </v-dialog>
         </v-list-item>

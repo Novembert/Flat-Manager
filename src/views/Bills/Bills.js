@@ -5,8 +5,7 @@ import AttachmentsManager from '@/components/AttachmentsManager/AttachmentsManag
 import MiniToolbar from '@/components/MiniToolbar/MiniToolbar.vue'
 import DefaultFactory from '@/components/factories/DefaultFactory/DefaultFactory.vue'
 import { addBill, getBillsList, editBill, deleteBill } from '@/services/bills'
-import { findNewAttachments, findAttachmentsToDelete } from '@/helpers/_utils'
-import { saveFile, deleteFile } from '@/services/storage'
+import { generateNewAttachmentsArray } from '@/helpers/_utils'
 import * as dayjs from 'dayjs'
 
 export default {
@@ -60,17 +59,9 @@ export default {
     async billFilesChange(data) {
       const bill = data.bill
       const files = data.files
-      const filesToSave = findNewAttachments(files.old, files.new)
-      const filesSavePromises = filesToSave.map((file) => saveFile(file))
-      const savedFiles = await Promise.all(filesSavePromises)
+      console.log('files', files)
+      const newFiles = await generateNewAttachmentsArray(bill, files)
 
-      const filesToDelete = findAttachmentsToDelete(files.old, files.new)
-      const filesDeletePromises = filesToDelete.map((file) => deleteFile(file))
-      const deletedFilesNames = await Promise.all(filesDeletePromises)
-
-      const unchangedFiles = bill.files ? bill.files.filter((file) => !deletedFilesNames.includes(file.name)) : []
-
-      const newFiles = [...savedFiles, ...unchangedFiles]
       editBill(bill.id, { files: newFiles })
     },
     deleteBill,
