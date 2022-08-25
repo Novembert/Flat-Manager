@@ -4,7 +4,7 @@
     <v-main class="pa-4 mt-14">
       <router-view />
     </v-main>
-    <AlertsHub />
+    <AlertsHub :alerts-list="alertsList" />
     <Loader :is-active="isActive" />
   </v-app>
 </template>
@@ -28,6 +28,7 @@ export default {
   }),
   computed: {
     ...mapGetters('loader', ['isActive']),
+    ...mapGetters('alerts', ['alertsList']),
   },
 }
 </script>

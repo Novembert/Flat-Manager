@@ -1,7 +1,8 @@
-import { mapGetters } from 'vuex'
-
 export default {
-  computed: {
-    ...mapGetters('alerts', ['alertsList']),
+  props: {
+    alertsList: {
+      type: Array,
+      default: () => [],
+    },
   },
 }
