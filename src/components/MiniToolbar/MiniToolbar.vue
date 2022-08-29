@@ -1,5 +1,5 @@
 <template>
-  <v-menu v-model="menu" :close-on-content-click="false" location="start">
+  <v-menu v-model="menu" :close-on-click="true" :close-on-content-click="false" location="start">
     <template #activator="{ props }">
       <v-btn variant="text" class="dots-btn" v-bind="props">
         <v-icon>mdi-dots-vertical</v-icon>
@@ -8,7 +8,14 @@
     <v-card min-width="150">
       <v-list>
         <v-list-item class="px-0">
-          <v-btn variant="flat" class="d-flex justify-start w-100" prepend-icon="mdi-pencil"> Edytuj </v-btn>
+          <v-btn
+            variant="flat"
+            class="d-flex justify-start w-100"
+            prepend-icon="mdi-pencil"
+            @click="$emit('submit-edit')"
+          >
+            Edytuj
+          </v-btn>
         </v-list-item>
         <v-list-item class="px-0">
           <v-dialog
@@ -27,7 +34,7 @@
               </v-btn>
             </template>
             <DeleteConfirmation
-              heading="Czy na pewno chesz usunąć załącznik?"
+              heading="Czy na pewno chesz usunąć?"
               @cancel="confirmDeleteDialog = false"
               @submit="$emit('submit-delete')"
             />

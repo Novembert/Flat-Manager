@@ -19,10 +19,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    initData: {
+      type: Object,
+      default: null,
+    },
   },
   data() {
     return {
-      formData: {},
       valid: null,
     }
   },
@@ -38,13 +41,24 @@ export default {
         this.$emit('update:open', value)
       },
     },
+    formData: {
+      get() {
+        return this.initData
+      },
+      set(value) {
+        this.$emit('update:init-data', value)
+      },
+    },
   },
   methods: {
     ...mapActions('alerts', ['addAlert']),
-    submitForm() {
-      if (this.valid) {
+    async submitForm() {
+      const validation = await this.$refs['form'].validate()
+      this.valid = validation.valid
+      if (this.valid === true) {
         this.$emit('on-submit', this.formData)
         this.formData = {}
+        this.valid = null
       } else {
         this.addAlert({
           id: 'FACTORY-INVALID',
@@ -55,7 +69,9 @@ export default {
     },
     cancel() {
       this.formData = {}
+      this.valid = null
       this.isOpen = false
+      this.$emit('cancel')
     },
   },
 }

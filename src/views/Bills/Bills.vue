@@ -1,6 +1,12 @@
 <template>
   <div class="d-flex justify-end mb-2">
-    <DefaultFactory v-model:open="showBillsFactory" factory-title="Dodaj rachunek" @on-submit="submitAddBill" />
+    <DefaultFactory
+      v-model:open="showBillsFactory"
+      v-model:initData="billsFormData"
+      :factory-title="editMode ? 'Edytuj rachunek' : 'Dodaj rachunek'"
+      @on-submit="submitBillFactory"
+      @cancel="editMode = false"
+    />
   </div>
   <h3 class="mb-4">Zakres</h3>
   <MonthAndYearPicker v-model:month="range.month" v-model:year="range.year" />
@@ -18,7 +24,7 @@
         :files="data.row.files"
         @attachments-change="(files) => billFilesChange({ files, bill: data.row })"
       />
-      <MiniToolbar @submit-delete="deleteBill(data.row)" />
+      <MiniToolbar @submit-delete="deleteBill(data.row)" @submit-edit="openEditBill(data.row)" />
     </template>
   </CheckableList>
 </template>

@@ -7,6 +7,7 @@ import DefaultFactory from '@/components/factories/DefaultFactory/DefaultFactory
 import { addBill, getBillsList, editBill, deleteBill } from '@/services/bills'
 import { generateNewAttachmentsArray } from '@/helpers/_utils'
 import * as dayjs from 'dayjs'
+import { clone } from 'lodash'
 
 export default {
   components: {
@@ -27,6 +28,8 @@ export default {
       billsUnsubscribe: null,
       showCallendar: false,
       showBillsFactory: false,
+      billsFormData: {},
+      editMode: false,
     }
   },
   watch: {
@@ -38,11 +41,13 @@ export default {
     },
   },
   methods: {
-    submitAddBill(data) {
+    submitBillFactory(submittedData) {
+      const data = clone(submittedData)
       data.deadline = new Date(data.deadline)
       data.checked = false
       this.showBillsFactory = false
-      addBill(data)
+      this.editMode ? editBill(data.id, data) : addBill(data)
+      this.editMode = false
     },
     getBills() {
       this.billsUnsubscribe = getBillsList({ month: this.range.month, year: this.range.year }, this.parseBills)
@@ -56,10 +61,17 @@ export default {
     checkBill({ id, checked }) {
       editBill(id, { checked })
     },
+    openEditBill(submittedData) {
+      const data = clone(submittedData)
+      data.deadline = dayjs(data.deadline, 'DD/MM/YYYY')
+      data.deadline = data.deadline.format('YYYY-MM-DD')
+      this.billsFormData = data
+      this.editMode = true
+      this.showBillsFactory = true
+    },
     async billFilesChange(data) {
       const bill = data.bill
       const files = data.files
-      console.log('files', files)
       const newFiles = await generateNewAttachmentsArray(bill, files)
 
       editBill(bill.id, { files: newFiles })

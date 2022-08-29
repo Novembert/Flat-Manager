@@ -5,3 +5,11 @@
     text-decoration: line-through;
   }
 }
+
+:deep(.v-list-item__content) {
+  display: flex;
+
+  v-list-item-header {
+    flex: 1 1 auto;
+  }
+}
