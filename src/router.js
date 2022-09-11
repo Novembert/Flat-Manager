@@ -12,6 +12,14 @@ const routes = [
     },
   },
   {
+    path: '/cleaning',
+    name: 'cleaning',
+    component: Bills,
+    meta: {
+      title: 'Sprzątanie',
+    },
+  },
+  {
     path: '/',
     name: 'welcome',
     component: WelcomeScreen,

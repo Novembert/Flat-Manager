@@ -1,8 +1,7 @@
-import MonthAndYearPicker from '@/components/MonthAndYearPicker/MonthAndYearPicker.vue'
 import CheckableList from '@/components/CheckableList/CheckableList.vue'
-import TasksCalendar from '@/components/TasksCalendar/TasksCalendar.vue'
 import AttachmentsManager from '@/components/AttachmentsManager/AttachmentsManager.vue'
 import MiniToolbar from '@/components/MiniToolbar/MiniToolbar.vue'
+import TasksBoard from '@/components/TasksBoard/TasksBoard.vue'
 import DefaultFactory from '@/components/factories/DefaultFactory/DefaultFactory.vue'
 import { addBill, getBillsList, editBill, deleteBill } from '@/services/bills'
 import { generateNewAttachmentsArray } from '@/helpers/_utils'
@@ -11,12 +10,11 @@ import { clone } from 'lodash'
 
 export default {
   components: {
-    MonthAndYearPicker,
     CheckableList,
-    TasksCalendar,
     DefaultFactory,
     MiniToolbar,
     AttachmentsManager,
+    TasksBoard,
   },
   data() {
     return {
@@ -26,7 +24,6 @@ export default {
       },
       bills: null,
       billsUnsubscribe: null,
-      showCallendar: false,
       showBillsFactory: false,
       billsFormData: {},
       editMode: false,

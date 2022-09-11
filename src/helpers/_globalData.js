@@ -12,11 +12,11 @@ export const links = [
     background: 'bg-blue-grey  bg-darken-1',
     to: 'bills',
   },
-  {
-    title: 'Budżet',
-    icon: 'dollar-sign',
-    background: 'bg-cyan bg-darken-1',
-  },
+  // {
+  //   title: 'Budżet',
+  //   icon: 'dollar-sign',
+  //   background: 'bg-cyan bg-darken-1',
+  // },
   {
     title: 'Stan',
     icon: 'box-open',
@@ -31,6 +31,7 @@ export const links = [
     title: 'Sprzątanie',
     icon: 'broom',
     background: 'bg-light-green bg-darken-1',
+    to: 'cleaning',
   },
   {
     title: 'Naprawy',
