@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WelcomeScreen from '@/views/WelcomeScreen/WelcomeScreen.vue'
 import Bills from '@/views/Bills/Bills.vue'
+import Cleanings from '@/views/Cleanings/Cleanings.vue'
 
 const routes = [
   {
@@ -12,9 +13,9 @@ const routes = [
     },
   },
   {
-    path: '/cleaning',
-    name: 'cleaning',
-    component: Bills,
+    path: '/cleanings',
+    name: 'cleanings',
+    component: Cleanings,
     meta: {
       title: 'Sprzątanie',
     },

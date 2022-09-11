@@ -7,6 +7,9 @@ service cloud.firestore {
     match /bills/{bill} {
       allow get, list, create, update, delete: if true
     }
+    match /cleanings/{cleaning} {
+      allow get, list, create, update, delete: if true
+    }
     match /counter/{collection} {
       allow get, list, create, update, delete: if true
     }

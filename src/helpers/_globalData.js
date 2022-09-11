@@ -15,7 +15,6 @@ export const links = [
   // {
   //   title: 'Budżet',
   //   icon: 'dollar-sign',
-  //   background: 'bg-cyan bg-darken-1',
   // },
   {
     title: 'Stan',
@@ -24,29 +23,29 @@ export const links = [
   },
   {
     title: 'Listy zakupów',
-    icon: 'list-check',
     background: 'bg-green bg-darken-1',
+    icon: 'list-check',
   },
   {
     title: 'Sprzątanie',
     icon: 'broom',
     background: 'bg-light-green bg-darken-1',
-    to: 'cleaning',
+    to: 'cleanings',
   },
   {
     title: 'Naprawy',
     icon: 'hammer',
-    background: 'bg-amber bg-darken-1',
+    background: 'bg-brown bg-darken-1',
   },
   {
     title: 'Wizyty',
     icon: 'people-group',
-    background: 'bg-brown bg-darken-1',
+    background: 'bg-indigo bg-darken-1',
   },
   {
     title: 'Przypomnienia',
     icon: 'bell',
-    background: 'bg-indigo bg-darken-1',
+    background: 'bg-cyan bg-darken-1',
   },
 ]
 

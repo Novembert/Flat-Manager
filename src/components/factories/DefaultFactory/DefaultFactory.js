@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     filteredInputs() {
-      return defaultInputs.filter((el) => !(el.name in this.hide))
+      return defaultInputs.filter((el) => !this.hide.includes(el.name))
     },
     isOpen: {
       get() {
@@ -56,6 +56,7 @@ export default {
       const validation = await this.$refs['form'].validate()
       this.valid = validation.valid
       if (this.valid === true) {
+        console.log('test')
         this.$emit('on-submit', this.formData)
         this.formData = {}
         this.valid = null
