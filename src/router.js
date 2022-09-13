@@ -1,24 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WelcomeScreen from '@/views/WelcomeScreen/WelcomeScreen.vue'
-import Bills from '@/views/Bills/Bills.vue'
-import Cleanings from '@/views/Cleanings/Cleanings.vue'
+import DefaultTasksPage from '@/views/DefaultTasksPage/DefaultTasksPage.vue'
+import routesData from '@/helpers/_routesData'
 
 const routes = [
   {
     path: '/bills',
     name: 'bills',
-    component: Bills,
+    component: DefaultTasksPage,
     meta: {
       title: 'Rachunki',
     },
+    props: routesData.bills,
   },
   {
     path: '/cleanings',
     name: 'cleanings',
-    component: Cleanings,
+    component: DefaultTasksPage,
     meta: {
       title: 'Sprzątanie',
     },
+    props: routesData.cleanings,
   },
   {
     path: '/',
