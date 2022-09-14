@@ -3,8 +3,17 @@ import WelcomeScreen from '@/views/WelcomeScreen/WelcomeScreen.vue'
 import DefaultTasksPage from '@/views/DefaultTasksPage/DefaultTasksPage.vue'
 import routesData from '@/helpers/_routesData'
 import FixesPage from '@/views/FixesPage/FixesPage.vue'
+import Login from '@/views/Login/Login.vue'
 
 const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+    meta: {
+      title: 'Login',
+    },
+  },
   {
     path: '/bills',
     name: 'bills',
