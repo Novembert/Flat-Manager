@@ -22,7 +22,7 @@ export const defaultInputs = [
     items: currenciesToAutocomplete,
   },
   {
-    label: 'Deadline',
+    label: 'Termin',
     name: 'deadline',
     rules: [rules.required],
     type: 'date',
