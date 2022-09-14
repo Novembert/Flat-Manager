@@ -36,6 +36,7 @@ export const links = [
     title: 'Naprawy',
     icon: 'hammer',
     background: 'bg-brown bg-darken-1',
+    to: 'fixes',
   },
   {
     title: 'Wizyty',

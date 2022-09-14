@@ -8,11 +8,12 @@
       <v-list-item-avatar start>
         <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" @change="check(item)" />
       </v-list-item-avatar>
-      <v-list-item-header>
+      <v-list-item-header class="v-list-item-header">
         <v-list-item-title>{{
           item.value ? `${item.value} ${item.currency} | ${item.name}` : item.name
         }}</v-list-item-title>
         <v-list-item-subtitle
+          v-if="item.deadline"
           :class="[
             calculateDateDiff(item.deadline) <= 0 && 'font-weight-bold',
             calculateDateDiff(item.deadline) < 0 && 'text-error',

@@ -13,6 +13,9 @@ service cloud.firestore {
     match /visits/{visit} {
       allow get, list, create, update, delete: if true
     }
+    match /fixes/{fix} {
+      allow get, list, create, update, delete: if true
+    }
     match /alerts/{alert} {
       allow get, list, create, update, delete: if true
     }

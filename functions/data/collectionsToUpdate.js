@@ -1,3 +1,3 @@
-const collections = ["bills", "cleanings", "visits", "alerts"];
+const collections = ["bills", "cleanings", "visits", "alerts", "fixes"];
 
 module.exports = collections;

@@ -60,6 +60,25 @@ class TasksController {
     }
   }
 
+  async getAllTasksList(callback, errorMessage = defaultErrorMessage) {
+    try {
+      const tasksQuery = query(this.collection)
+
+      return onSnapshot(tasksQuery, (querySnapshot) => {
+        let allDocs = querySnapshot.docs
+        allDocs = allDocs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        callback(allDocs)
+      })
+    } catch (err) {
+      console.error(`get${this.label}sList Error: `, err)
+      store.dispatch('alerts/addAlert', {
+        id: `GET-${this.label}S-LIST-ERROR`,
+        content: errorMessage,
+        type: 'error',
+      })
+    }
+  }
+
   editTask(id, data, errorMessage = defaultErrorMessage) {
     const documentRef = doc(db, this.collectionName, id)
     updateDoc(documentRef, data).catch((err) => {
