@@ -10,12 +10,7 @@
     />
   </div>
   <TasksBoard v-model:range="range" :tasks="tasks">
-    <CheckableList
-      checkbox-color="light-green darken-1"
-      :items="tasks"
-      @check="checkTask"
-      @files-change="taskFilesChange"
-    >
+    <CheckableList :checkbox-color="checkColor" :items="tasks" @check="checkTask" @files-change="taskFilesChange">
       <template #extra="data">
         <AttachmentsManager
           :files="data.row.files"

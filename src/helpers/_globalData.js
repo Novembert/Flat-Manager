@@ -41,11 +41,13 @@ export const links = [
     title: 'Wizyty',
     icon: 'people-group',
     background: 'bg-indigo bg-darken-1',
+    to: 'visits',
   },
   {
     title: 'Przypomnienia',
     icon: 'bell',
     background: 'bg-cyan bg-darken-1',
+    to: 'alerts',
   },
 ]
 

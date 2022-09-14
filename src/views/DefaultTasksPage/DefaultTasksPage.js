@@ -51,7 +51,6 @@ export default {
   },
   data() {
     return {
-      tasksControllerInstance: null,
       range: {
         month: null,
         year: null,
@@ -70,6 +69,16 @@ export default {
         this.getTasks()
       },
     },
+    tasksControllerInstance: {
+      handler() {
+        this.getTasks()
+      },
+    },
+  },
+  computed: {
+    tasksControllerInstance() {
+      return new TasksController(this.collection, this.label)
+    },
   },
   methods: {
     submitTasksFactory(submittedData) {
@@ -83,7 +92,7 @@ export default {
       this.editMode = false
     },
     getTasks() {
-      this.tasksUnsubscribe = this.tasksControllerInstance.getTasksList(
+      this.tasksControllerInstance.getTasksList(
         { month: this.range.month, year: this.range.year },
         this.parseTasks,
         this.errorMessages.getTasksMessage
@@ -113,14 +122,5 @@ export default {
 
       this.tasksControllerInstance.editTask(task.id, { files: newFiles }, this.errorMessages.editTaskMessage)
     },
-  },
-  created() {
-    this.tasksControllerInstance = new TasksController(this.collection, this.label)
-  },
-  mounted() {
-    this.getTasks()
-  },
-  beforeDestroy() {
-    this.tasksUnsubscribe()
   },
 }

@@ -24,6 +24,38 @@ const routesData = {
     },
     checkColor: 'light-green darken-1',
   },
+  visits: {
+    collection: 'visits',
+    label: 'Visit',
+    errorMessages: {
+      editTaskMessage: 'Wystąpił niespodziewany błąd podczas edytowania wizyty',
+      addTaskMessage: 'Wystąpił niespodziewany błąd podczas dodawania wizyty',
+      getTasksMessage: 'Wystąpił niespodziewany błąd podczas pobierania listy wizyt',
+      deleteTaskMessage: 'Wystąpił niespodziewany błąd podczas usuwania wizyty',
+    },
+    factoryConfig: {
+      editTask: 'Edytuj wizytę',
+      addTask: 'Dodaj wizytę',
+      hide: ['value', 'currency'],
+    },
+    checkColor: 'indigo darken-1',
+  },
+  alerts: {
+    collection: 'alerts',
+    label: 'Alert',
+    errorMessages: {
+      editTaskMessage: 'Wystąpił niespodziewany błąd podczas edytowania przypomnienia',
+      addTaskMessage: 'Wystąpił niespodziewany błąd podczas dodawania przypomnienia',
+      getTasksMessage: 'Wystąpił niespodziewany błąd podczas pobierania listy przypomnień',
+      deleteTaskMessage: 'Wystąpił niespodziewany błąd podczas usuwania przypomnienia',
+    },
+    factoryConfig: {
+      editTask: 'Edytuj przypomnienie',
+      addTask: 'Dodaj przypomnienie',
+      hide: ['value', 'currency'],
+    },
+    checkColor: 'cyan darken-1',
+  },
 }
 
 export default routesData

@@ -23,6 +23,24 @@ const routes = [
     props: routesData.cleanings,
   },
   {
+    path: '/visits',
+    name: 'visits',
+    component: DefaultTasksPage,
+    meta: {
+      title: 'Wizyty',
+    },
+    props: routesData.visits,
+  },
+  {
+    path: '/alerts',
+    name: 'alerts',
+    component: DefaultTasksPage,
+    meta: {
+      title: 'Przypomnienia',
+    },
+    props: routesData.alerts,
+  },
+  {
     path: '/',
     name: 'welcome',
     component: WelcomeScreen,
