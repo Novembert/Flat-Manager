@@ -4,6 +4,7 @@ import DefaultTasksPage from '@/views/DefaultTasksPage/DefaultTasksPage.vue'
 import routesData from '@/helpers/_routesData'
 import FixesPage from '@/views/FixesPage/FixesPage.vue'
 import Login from '@/views/Login/Login.vue'
+import { auth } from '@/firebaseInit'
 
 const routes = [
   {
@@ -20,6 +21,7 @@ const routes = [
     component: DefaultTasksPage,
     meta: {
       title: 'Rachunki',
+      requiresAuth: true,
     },
     props: routesData.bills,
   },
@@ -29,6 +31,7 @@ const routes = [
     component: DefaultTasksPage,
     meta: {
       title: 'Sprzątanie',
+      requiresAuth: true,
     },
     props: routesData.cleanings,
   },
@@ -38,6 +41,7 @@ const routes = [
     component: DefaultTasksPage,
     meta: {
       title: 'Wizyty',
+      requiresAuth: true,
     },
     props: routesData.visits,
   },
@@ -47,6 +51,7 @@ const routes = [
     component: DefaultTasksPage,
     meta: {
       title: 'Przypomnienia',
+      requiresAuth: true,
     },
     props: routesData.alerts,
   },
@@ -56,6 +61,7 @@ const routes = [
     component: FixesPage,
     meta: {
       title: 'Naprawy',
+      requiresAuth: true,
     },
     props: routesData.fixes,
   },
@@ -65,6 +71,7 @@ const routes = [
     component: WelcomeScreen,
     meta: {
       title: 'Start',
+      requiresAuth: true,
     },
   },
 ]
@@ -76,6 +83,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | Mieszkanie`
+
+  if (to.path === '/login' && auth.currentUser) {
+    next('/')
+    return
+  }
+
+  if (to.matched.some((record) => record.meta.requiresAuth) && !auth.currentUser) {
+    next('/login')
+    return
+  }
+
+  next()
   next()
 })
 

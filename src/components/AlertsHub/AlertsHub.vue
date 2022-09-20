@@ -1,6 +1,6 @@
 <template>
   <teleport to="#app">
-    <TransitionGroup id="alerts-hub" class="d-flex flex-direction-column px-2 py-2" tag="div" name="list">
+    <TransitionGroup id="alerts-hub" class="d-flex flex-column px-2 py-2" tag="div" name="list">
       <v-alert
         v-for="alert in alertsList"
         :key="alert.id"

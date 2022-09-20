@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import AppBar from '@/components/AppBar/AppBar.vue'
 import AlertsHub from '@/components/AlertsHub/AlertsHub.vue'
 import Loader from '@/components/Loader/Loader.vue'
@@ -22,13 +22,18 @@ export default {
     AlertsHub,
     Loader,
   },
-
   data: () => ({
     //
   }),
   computed: {
     ...mapGetters('loader', ['isActive']),
     ...mapGetters('alerts', ['alertsList']),
+  },
+  beforeMount() {
+    this.fetchUser()
+  },
+  methods: {
+    ...mapActions('user', ['fetchUser']),
   },
 }
 </script>
