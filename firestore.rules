@@ -5,22 +5,22 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /bills/{bill} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
     match /cleanings/{cleaning} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
     match /visits/{visit} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
     match /fixes/{fix} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
     match /alerts/{alert} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
     match /counter/{collection} {
-      allow get, list, create, update, delete: if true
+      allow get, list, create, update, delete: if request.auth != null;
     }
   }
 }
