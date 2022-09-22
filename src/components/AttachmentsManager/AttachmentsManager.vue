@@ -24,9 +24,7 @@
       </div>
       <v-list>
         <v-list-item v-for="file of files" :key="file.url" class="px-0">
-          <v-list-item-header>
-            <v-list-item-title>{{ file.name }} {{ file.url }}</v-list-item-title>
-          </v-list-item-header>
+          <v-list-item-title>{{ file.name }} {{ file.url }}</v-list-item-title>
 
           <v-btn class="mx-2" icon="mdi-download" size="x-small" @click="downloadFile(file)"> </v-btn>
           <v-dialog

@@ -9,8 +9,13 @@
       <v-card-title class="px-0 mb-2 d-flex justify-space-between">
         <span class="text-h5">{{ factoryTitle }}</span>
       </v-card-title>
-      <v-form ref="form" v-model="valid" @submit.prevent="submitForm">
-        <FactoryFormInputs v-if="filteredInputs" v-model="formData" :lazy-validation="true" :inputs="filteredInputs" />
+      <v-divider class="my-4" />
+      <v-tabs v-if="showSchedulerOption" v-model="tab">
+        <v-tab value="once">Jednorazowo</v-tab>
+        <v-tab value="scheduled">Cyklicznie</v-tab>
+      </v-tabs>
+      <v-form ref="form" v-model="valid" class="mt-4" @submit.prevent="submitForm">
+        <FactoryFormInputs v-if="filteredInputs" v-model="formData" :inputs="filteredInputs" />
         <v-card-actions class="justify-end">
           <v-btn @click="cancel"> Anuluj </v-btn>
           <v-btn class="ml-4" color="success" type="submit">Zapisz</v-btn>

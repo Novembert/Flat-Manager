@@ -22,7 +22,7 @@ export default {
       required: true,
     },
     label: {
-      type: Object,
+      type: String,
       default: null,
       required: true,
     },

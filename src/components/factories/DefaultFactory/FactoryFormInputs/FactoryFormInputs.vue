@@ -10,6 +10,7 @@
       :name="input.name"
       :label="input.label"
     />
+    <Scheduler v-else-if="input.type === 'scheduler'" v-model="value[input.name]" />
     <v-text-field v-else v-model="value[input.name]" v-bind="input" />
   </div>
 </template>

@@ -1,8 +1,10 @@
 import { DatePicker } from 'v-calendar'
+import Scheduler from '../Scheduler/Scheduler.vue'
 
 export default {
   components: {
     DatePicker,
+    Scheduler,
   },
   props: {
     inputs: {

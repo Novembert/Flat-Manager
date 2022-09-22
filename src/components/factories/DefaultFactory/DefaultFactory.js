@@ -27,11 +27,20 @@ export default {
   data() {
     return {
       valid: null,
+      tab: 'once',
     }
   },
   computed: {
     filteredInputs() {
-      return defaultInputs.filter((el) => !this.hide.includes(el.name))
+      return defaultInputs
+        .filter((el) => !this.hide.includes(el.name))
+        .filter(
+          (el) =>
+            (this.tab === 'scheduled' && el.name !== 'deadline') || (this.tab === 'once' && el.name !== 'schedule')
+        )
+    },
+    showSchedulerOption() {
+      return !this.hide.includes('deadline')
     },
     isOpen: {
       get() {

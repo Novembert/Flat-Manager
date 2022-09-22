@@ -5,10 +5,8 @@
       :key="item.id"
       :class="['px-0', calculateDateDiff(item.deadline) < 0 && item.checked && 'good']"
     >
-      <v-list-item-avatar start>
-        <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" @change="check(item)" />
-      </v-list-item-avatar>
-      <v-list-item-header class="v-list-item-header">
+      <v-checkbox v-model="item.checked" hide-details :color="checkboxColor" @change="check(item)" />
+      <div class="flex-grow-1 ml-2">
         <v-list-item-title>{{
           item.value ? `${item.value} ${item.currency} | ${item.name}` : item.name
         }}</v-list-item-title>
@@ -27,7 +25,7 @@
             inline
           />
         </v-list-item-subtitle>
-      </v-list-item-header>
+      </div>
       <slot :row="item" name="extra"> </slot>
     </v-list-item>
   </v-list>

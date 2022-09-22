@@ -8,8 +8,13 @@
 
 :deep(.v-list-item__content) {
   display: flex;
+  align-items: center;
 
-  v-list-item-header {
+  .v-input {
+    flex: 0 1 auto
+  }
+
+  .v-list-item-title {
     flex: 1 1 auto;
   }
 }

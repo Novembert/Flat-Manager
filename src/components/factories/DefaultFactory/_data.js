@@ -28,4 +28,8 @@ export const defaultInputs = [
     type: 'date',
     max: '2099-12-31',
   },
+  {
+    name: 'schedule',
+    type: 'scheduler',
+  },
 ]

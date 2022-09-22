@@ -36,6 +36,29 @@ class TasksController {
     })
   }
 
+  addScheduledTask(data, errorMessage = defaultErrorMessage) {
+    return new Promise((resolve) => {
+      store.commit('loader/setActive', true)
+      collection('schedules')
+        .doc(this.collection)
+        .add(data)
+        .catch((err) => {
+          console.error(`add${this.label} Error: `, err)
+          store.dispatch('alerts/addAlert', {
+            id: `ADD-SCHEDULED-${this.label}-INVALID`,
+            content: errorMessage,
+            type: 'error',
+          })
+        })
+        .then((res) => {
+          resolve(res)
+        })
+        .finally(() => {
+          store.commit('loader/setActive', false)
+        })
+    })
+  }
+
   async getTasksList({ month, year }, callback, errorMessage = defaultErrorMessage) {
     const start = new Date(`${year}/${month}/01`)
     const end = new Date(`${year}/${month}/01`)
