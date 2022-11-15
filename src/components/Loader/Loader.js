@@ -1,7 +1,8 @@
-import { mapGetters } from 'vuex'
-
 export default {
-  computed: {
-    ...mapGetters('loader', ['isActive']),
+  props: {
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
   },
 }

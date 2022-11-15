@@ -7,11 +7,11 @@
         item-title="title"
         items-value="value"
         hide-details
-        label="Miesiąc"
+        label="Month"
       />
     </v-col>
     <v-col>
-      <v-autocomplete v-model="pickedYear" :items="years" hide-details label="Rok" />
+      <v-autocomplete v-model="pickedYear" :items="years" hide-details label="Year" />
     </v-col>
   </v-row>
 </template>

@@ -21,10 +21,10 @@ export const getCountsList = (callback) => {
       callback(allDocs)
     })
   } catch (err) {
-    console.log('getCountsList Error: ', err)
+    console.error('getCountsList Error: ', err)
     store.dispatch('alerts/addAlert', {
       id: 'GET-COUNTS-LIST-ERROR',
-      content: 'Wystąpił niespodziewany błąd podczas pobierania liczb zadań',
+      content: 'An error occured while loading the tasks list',
       type: 'error',
     })
   }

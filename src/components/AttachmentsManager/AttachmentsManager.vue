@@ -8,7 +8,7 @@
     </template>
     <v-card class="pt-2 pb-6 px-4 dialog-card">
       <v-card-title class="px-0 mb-2 d-flex justify-space-between">
-        <span class="text-h5">Załączniki</span>
+        <span class="text-h5">Attachments</span>
         <v-btn
           :icon="addAttachmentMode ? 'mdi-arrow-left' : 'mdi-plus'"
           size="x-small"
@@ -19,24 +19,27 @@
       </v-card-title>
       <div v-if="addAttachmentMode" class="add-attachment-form">
         <v-file-input v-model="filesToSave" density="compact" variant="outlined" hide-details multiple />
-        <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Zapisz </v-btn>
+        <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Save </v-btn>
         <v-divider />
       </div>
-      <v-list :key="JSON.stringify(files)">
-        <v-list-item v-for="(file, index) of files" :key="file.name" class="px-0">
-          <v-list-item-header>
-            <v-list-item-title>{{ file.name }}</v-list-item-title>
-          </v-list-item-header>
+      <v-list>
+        <v-list-item v-for="file of files" :key="file.url" class="px-0">
+          <v-list-item-title>{{ file.name }} {{ file.url }}</v-list-item-title>
 
           <v-btn class="mx-2" icon="mdi-download" size="x-small" @click="downloadFile(file)"> </v-btn>
-          <v-dialog key="file-delete-dialog" :model-value="fileDeleteDialog" @click:outside="fileDeleteDialog = false">
+          <v-dialog
+            :key="`file-delete-dialog-${file.url}`"
+            :model-value="fileDeleteDialog"
+            @click:outside="fileDeleteDialog = false"
+          >
             <template #activator>
-              <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = true"> </v-btn>
+              <v-btn icon="mdi-delete" size="x-small" color="error" @click="fileDeleteDialog = file.url"> </v-btn>
             </template>
             <DeleteConfirmation
+              :key="file.url"
               heading="Czy na pewno chesz usunąć załącznik?"
               @cancel="fileDeleteDialog = false"
-              @submit="deleteFile(index)"
+              @submit="deleteFile()"
             />
           </v-dialog>
         </v-list-item>

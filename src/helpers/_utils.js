@@ -1,5 +1,6 @@
 import * as dayjs from 'dayjs'
 import * as _ from 'lodash'
+import { saveFile, deleteFile } from '@/services/storage'
 
 export const generateMonths = () => {
   let result = []
@@ -32,4 +33,19 @@ export const findNewAttachments = (oldAttachments, newAttachments) => {
 export const findAttachmentsToDelete = (oldAttachments, newAttachments) => {
   const newAttachmentsNames = newAttachments.map((att) => att.name)
   return oldAttachments.filter((attachment) => !newAttachmentsNames.includes(attachment.name))
+}
+
+export const generateNewAttachmentsArray = async (obj, files) => {
+  const filesToSave = findNewAttachments(files.old, files.new)
+  const filesSavePromises = filesToSave.map((file) => saveFile(file))
+  const savedFiles = await Promise.all(filesSavePromises)
+
+  const filesToDelete = findAttachmentsToDelete(files.old, files.new)
+  const filesDeletePromises = filesToDelete.map((file) => deleteFile(file))
+  const deletedFilesNames = await Promise.all(filesDeletePromises)
+
+  const unchangedFiles = obj.files ? obj.files.filter((file) => !deletedFilesNames.includes(file.name)) : []
+
+  const newFiles = [...savedFiles, ...unchangedFiles]
+  return newFiles
 }

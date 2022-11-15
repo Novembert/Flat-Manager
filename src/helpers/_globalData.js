@@ -7,45 +7,48 @@ export const links = [
     welcome: true,
   },
   {
-    title: 'Rachunki',
+    title: 'Bills',
     icon: ['fas', 'hand-holding-dollar'],
     background: 'bg-blue-grey  bg-darken-1',
     to: 'bills',
   },
+  // {
+  //   title: 'Budżet',
+  //   icon: 'dollar-sign',
+  // },
   {
-    title: 'Budżet',
-    icon: 'dollar-sign',
-    background: 'bg-cyan bg-darken-1',
-  },
-  {
-    title: 'Stan',
+    title: 'Items availability',
     icon: 'box-open',
     background: 'bg-teal bg-darken-1',
   },
   {
-    title: 'Listy zakupów',
-    icon: 'list-check',
+    title: 'Shopping lists',
     background: 'bg-green bg-darken-1',
+    icon: 'list-check',
   },
   {
-    title: 'Sprzątanie',
+    title: 'Cleaning',
     icon: 'broom',
     background: 'bg-light-green bg-darken-1',
+    to: 'cleanings',
   },
   {
-    title: 'Naprawy',
+    title: 'Fixes',
     icon: 'hammer',
-    background: 'bg-amber bg-darken-1',
-  },
-  {
-    title: 'Wizyty',
-    icon: 'people-group',
     background: 'bg-brown bg-darken-1',
+    to: 'fixes',
   },
   {
-    title: 'Przypomnienia',
-    icon: 'bell',
+    title: 'Visits',
+    icon: 'people-group',
     background: 'bg-indigo bg-darken-1',
+    to: 'visits',
+  },
+  {
+    title: 'Reminders',
+    icon: 'bell',
+    background: 'bg-cyan bg-darken-1',
+    to: 'alerts',
   },
 ]
 

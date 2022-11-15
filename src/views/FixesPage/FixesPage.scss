@@ -1,0 +1,8 @@
+:deep(.v-list-item-header) {
+  display: flex;
+  align-items: center;
+
+  .v-list-item-title {
+    font-size: 1.3rem;
+  }
+}

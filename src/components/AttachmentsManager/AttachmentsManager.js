@@ -16,7 +16,7 @@ export default {
       open: false,
       filesToSave: [],
       addAttachmentMode: false,
-      fileDeleteDialog: false,
+      fileDeleteDialog: null,
     }
   },
   methods: {
@@ -27,11 +27,14 @@ export default {
       this.filesToSave = []
       this.addAttachmentMode = false
     },
-    deleteFile(index) {
-      const filesCopy = clone(this.files)
-      filesCopy.splice(index, 1)
-      this.fileDeleteDialog = false
-      this.$emit('attachments-change', { old: this.files, new: filesCopy })
+    async deleteFile() {
+      const oldFiles = JSON.parse(JSON.stringify(this.files))
+      let filesCopy = JSON.parse(JSON.stringify(this.files))
+      filesCopy = await filesCopy.filter((file) => file.url !== this.fileDeleteDialog)
+      this.fileDeleteDialog = null
+      setTimeout(() => {
+        this.$emit('attachments-change', { old: oldFiles, new: filesCopy })
+      }, 200)
     },
     downloadFile({ url, name }) {
       const xhr = new XMLHttpRequest()
