@@ -4,7 +4,7 @@ import { deleteFile } from './storage'
 import * as dayjs from 'dayjs'
 import store from '@/store'
 
-const defaultErrorMessage = 'Wystąpił niespodziewany błąd'
+const defaultErrorMessage = 'An unknown error occured'
 
 class TasksController {
   constructor(collectionName, label) {

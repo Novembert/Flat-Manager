@@ -9,7 +9,7 @@
 <template>
   <div>
     <v-divider />
-    <p class="my-5">Interwał</p>
+    <p class="my-5">Interval</p>
     <v-radio-group v-model="computedScheduleConfig.scheduleType" v-bind="inputs.scheduleType">
       <v-radio v-for="item of inputs.scheduleType.items" v-bind="item" :key="item.value" />
     </v-radio-group>
@@ -21,13 +21,13 @@
     </template>
     <template v-else-if="computedScheduleConfig.scheduleType === 'monthly-week'"></template>
     <template v-else></template> -->
-    <v-text-field
+    <!-- <v-text-field
       v-for="input of mappedInputs"
       :key="input.name"
       v-model="computedScheduleConfig[input.name]"
       class="mb-2"
       v-bind="input"
-    />
+    /> -->
   </div>
 </template>
 

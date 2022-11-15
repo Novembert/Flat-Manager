@@ -16,7 +16,7 @@ export const saveFile = async (file) => {
     console.error('Error while saving file: ', error)
     store.dispatch('alerts/addAlert', {
       id: 'ADD-FILE-INVALID',
-      content: 'Wystąpił niespodziewany błąd podczas dodawania pliku',
+      content: 'An error occured while uploading the file',
       type: 'error',
     })
   }
@@ -31,7 +31,7 @@ export const deleteFile = async (file) => {
     console.error('Error while deleting file: ', error)
     store.dispatch('alerts/addAlert', {
       id: 'DELETE-FILE-INVALID',
-      content: 'Wystąpił niespodziewany błąd podczas usuwania pliku',
+      content: 'An error occured while deleting the file',
       type: 'error',
     })
   }

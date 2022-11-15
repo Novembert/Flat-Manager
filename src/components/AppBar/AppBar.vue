@@ -3,7 +3,7 @@
     <template v-if="getUser" #prepend>
       <v-app-bar-nav-icon @click="navOpen = !navOpen"></v-app-bar-nav-icon>
     </template>
-    <v-app-bar-title>Mieszkanie / {{ pageTitle }}</v-app-bar-title>
+    <v-app-bar-title>Flat-management / {{ pageTitle }}</v-app-bar-title>
     <template #append>
       <ProfileMenu />
     </template>

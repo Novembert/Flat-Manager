@@ -14,7 +14,7 @@
             prepend-icon="mdi-pencil"
             @click="$emit('submit-edit')"
           >
-            Edytuj
+            Edit
           </v-btn>
         </v-list-item>
         <v-list-item class="px-0">
@@ -30,7 +30,7 @@
                 prepend-icon="mdi-delete"
                 @click="confirmDeleteDialog = true"
               >
-                Usuń
+                Delete
               </v-btn>
             </template>
             <DeleteConfirmation

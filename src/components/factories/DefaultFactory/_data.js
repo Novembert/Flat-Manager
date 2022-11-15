@@ -3,26 +3,26 @@ import { currenciesToAutocomplete } from '@/helpers/_globalData'
 
 export const defaultInputs = [
   {
-    label: 'Nazwa',
+    label: 'Name',
     name: 'name',
     rules: [rules.required],
     type: 'text',
   },
   {
-    label: 'Cena',
+    label: 'Price',
     name: 'value',
     rules: [rules.required, rules.digits],
     type: 'number',
   },
   {
-    label: 'Waluta',
+    label: 'Currency',
     name: 'currency',
     rules: [rules.required],
     type: 'autocomplete',
     items: currenciesToAutocomplete,
   },
   {
-    label: 'Termin',
+    label: 'Deadline',
     name: 'deadline',
     rules: [rules.required],
     type: 'date',

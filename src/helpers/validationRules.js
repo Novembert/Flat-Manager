@@ -4,10 +4,10 @@ export default {
     (!!val && !!Array.isArray(val) && !!val.length) ||
     val === false ||
     val === 0 ||
-    'Pole wymagane',
-  digits: (val) => !val || /^\d+$/.test(val) || 'Pole akceptuje tylko cyfry',
-  pickMonth: (val) => !val || val >= 1 || val <= 12 || 'Podaj wartości z przedziału 1 - 12',
-  pickWeek: (val) => !val || val >= 1 || val <= 4 || 'Podaj wartości z przedziału 1 - 4',
-  pickWeekDay: (val) => !val || val >= 1 || val <= 7 || 'Podaj wartości z przedziału ',
-  pickDay: (val) => !val || val >= 1 || val <= 30 || 'Podaj wartości z przedziału 1 - 30',
+    'This field is required',
+  digits: (val) => !val || /^\d+$/.test(val) || 'This field can accept only digits',
+  pickMonth: (val) => !val || val >= 1 || val <= 12 || 'This field can accept only values by range of 1 - 12',
+  pickWeek: (val) => !val || val >= 1 || val <= 4 || 'This field can accept only values by range of 1 - 4',
+  pickWeekDay: (val) => !val || val >= 1 || val <= 7 || 'This field can accept only values by range of 1 - 7',
+  pickDay: (val) => !val || val >= 1 || val <= 30 || 'This field can accept only values by range of 1 - 30',
 }

@@ -8,7 +8,7 @@
     </template>
     <v-card class="pt-2 pb-6 px-4 dialog-card">
       <v-card-title class="px-0 mb-2 d-flex justify-space-between">
-        <span class="text-h5">Załączniki</span>
+        <span class="text-h5">Attachments</span>
         <v-btn
           :icon="addAttachmentMode ? 'mdi-arrow-left' : 'mdi-plus'"
           size="x-small"
@@ -19,7 +19,7 @@
       </v-card-title>
       <div v-if="addAttachmentMode" class="add-attachment-form">
         <v-file-input v-model="filesToSave" density="compact" variant="outlined" hide-details multiple />
-        <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Zapisz </v-btn>
+        <v-btn :disabled="filesToSave.length === 0" color="success" class="my-2" @click="save"> Save </v-btn>
         <v-divider />
       </div>
       <v-list>

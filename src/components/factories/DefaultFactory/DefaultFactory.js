@@ -71,7 +71,7 @@ export default {
       } else {
         this.addAlert({
           id: 'FACTORY-INVALID',
-          content: 'Proszę wypełnić wszystkie wymagane pola',
+          content: 'Please fill in all the required fields',
           type: 'error',
         })
       }

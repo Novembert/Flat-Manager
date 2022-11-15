@@ -30,18 +30,18 @@ export default {
     errorMessages: {
       type: Object,
       default: () => ({
-        editTaskMessage: 'Wystąpił niespodziewany błąd podczas edytowania zadania',
-        addTaskMessage: 'Wystąpił niespodziewany błąd podczas dodawania zadania',
-        getTasksMessage: 'Wystąpił niespodziewany błąd podczas pobierania listy zadań',
-        deleteTaskMessage: 'Wystąpił niespodziewany błąd podczas usuwania zadania',
+        editTaskMessage: 'An error occured while editing the task',
+        addTaskMessage: 'An error occured while creating the task',
+        getTasksMessage: 'An error occured while loading the tasks list',
+        deleteTaskMessage: 'An error occured while deleting the task',
       }),
     },
     factoryConfig: {
       type: Object,
       default: () => ({
         hide: [],
-        editTask: 'Edytuj zadanie',
-        addTask: 'Dodaj zadanie',
+        editTask: 'Edit task',
+        addTask: 'Add task',
       }),
     },
     checkColor: {

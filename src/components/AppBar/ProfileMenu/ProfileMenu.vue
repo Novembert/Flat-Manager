@@ -9,7 +9,7 @@
       <v-list>
         <v-list-item class="px-0">
           <v-btn variant="flat" class="d-flex justify-start w-100" prepend-icon="mdi-logout" @click="logout">
-            Wyloguj się
+            Logout
           </v-btn>
         </v-list-item>
       </v-list>

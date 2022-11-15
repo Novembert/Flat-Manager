@@ -20,7 +20,7 @@ const routes = [
     name: 'bills',
     component: DefaultTasksPage,
     meta: {
-      title: 'Rachunki',
+      title: 'Bills',
       requiresAuth: true,
     },
     props: routesData.bills,
@@ -30,7 +30,7 @@ const routes = [
     name: 'cleanings',
     component: DefaultTasksPage,
     meta: {
-      title: 'Sprzątanie',
+      title: 'Cleaning',
       requiresAuth: true,
     },
     props: routesData.cleanings,
@@ -40,7 +40,7 @@ const routes = [
     name: 'visits',
     component: DefaultTasksPage,
     meta: {
-      title: 'Wizyty',
+      title: 'Visits',
       requiresAuth: true,
     },
     props: routesData.visits,
@@ -50,7 +50,7 @@ const routes = [
     name: 'alerts',
     component: DefaultTasksPage,
     meta: {
-      title: 'Przypomnienia',
+      title: 'Reminders',
       requiresAuth: true,
     },
     props: routesData.alerts,
@@ -60,7 +60,7 @@ const routes = [
     name: 'fixes',
     component: FixesPage,
     meta: {
-      title: 'Naprawy',
+      title: 'Fixes',
       requiresAuth: true,
     },
     props: routesData.fixes,
@@ -82,7 +82,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | Mieszkanie`
+  document.title = `${to.meta.title} | Flat-management`
 
   if (to.path === '/login' && auth.currentUser) {
     next('/')
